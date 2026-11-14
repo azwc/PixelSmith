@@ -1,0 +1,220 @@
+/* =========================================================
+   Base, typography and layout helpers
+   The kit avoids a global reset. Component classes opt in.
+   ========================================================= */
+
+.pix-root,
+[class^='pix-'],
+[class*=' pix-'] {
+  box-sizing: border-box;
+}
+
+[class^='pix-']::before,
+[class*=' pix-']::before,
+[class^='pix-']::after,
+[class*=' pix-']::after {
+  box-sizing: border-box;
+}
+
+.pix-root {
+  min-height: 100%;
+  background: var(--pix-bg);
+  color: var(--pix-ink);
+  font-family: var(--pix-font-body);
+  font-size: var(--pix-font-size);
+  line-height: var(--pix-line-height);
+  -webkit-font-smoothing: none;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: geometricPrecision;
+}
+
+.pix-root ::selection,
+.pix-btn ::selection,
+.pix-panel ::selection {
+  background: var(--pix-primary);
+  color: var(--pix-primary-ink);
+}
+
+.pix-root :focus-visible,
+.pix-btn:focus-visible,
+.pix-input:focus-visible,
+.pix-textarea:focus-visible,
+.pix-select:focus-visible,
+.pix-check__input:focus-visible + .pix-check__box,
+.pix-switch__input:focus-visible + .pix-switch__track {
+  outline: 3px solid var(--pix-focus);
+  outline-offset: 3px;
+}
+
+.pix-display {
+  font-family: var(--pix-font-display);
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  line-height: 1.55;
+}
+
+.pix-h1,
+.pix-h2,
+.pix-h3,
+.pix-h4 {
+  margin: 0;
+  font-family: var(--pix-font-display);
+  font-weight: 400;
+  text-transform: uppercase;
+  line-height: 1.55;
+}
+
+.pix-h1 { font-size: clamp(22px, 4.4vw, 46px); }
+.pix-h2 { font-size: clamp(16px, 2.6vw, 26px); }
+.pix-h3 { font-size: clamp(12px, 1.8vw, 17px); }
+.pix-h4 { font-size: 10px; }
+
+.pix-text {
+  margin: 0;
+  font-family: var(--pix-font-body);
+  font-size: 21px;
+  line-height: 1.28;
+}
+
+.pix-text--sm { font-size: 18px; }
+.pix-text--dim { color: var(--pix-ink-dim); }
+.pix-text--mute { color: var(--pix-ink-mute); }
+.pix-text--tight { line-height: 1.1; }
+
+.pix-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0;
+  font-family: var(--pix-font-display);
+  font-size: 8px;
+  line-height: 1.5;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--pix-ink-dim);
+}
+
+.pix-eyebrow::before {
+  content: '';
+  width: 8px;
+  height: 8px;
+  flex: none;
+  background: var(--pix-primary);
+  box-shadow: 3px 0 0 var(--pix-primary);
+}
+
+.pix-link {
+  color: var(--pix-secondary);
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 4px;
+  cursor: pointer;
+}
+
+.pix-link:hover { color: var(--pix-primary); }
+
+.pix-stack {
+  display: flex;
+  flex-direction: column;
+  gap: var(--pix-stack-gap, 14px);
+}
+
+.pix-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--pix-row-gap, 12px);
+}
+
+.pix-cluster {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--pix-cluster-gap, 10px);
+}
+
+.pix-grid {
+  display: grid;
+  grid-template-columns: repeat(var(--pix-grid-cols, 2), minmax(0, 1fr));
+  gap: var(--pix-grid-gap, 18px);
+}
+
+@media (max-width: 720px) {
+  .pix-grid { grid-template-columns: minmax(0, 1fr); }
+}
+
+.pix-divider {
+  width: 100%;
+  height: 0;
+  margin: 0;
+  border: 0;
+  border-top: 3px dashed var(--pix-line-soft);
+}
+
+.pix-divider--solid { border-top-style: solid; }
+.pix-divider--strong { border-top-color: var(--pix-line); }
+
+.pix-sr-only {
+  position: absolute !important;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.pix-scanlines {
+  position: relative;
+  isolation: isolate;
+}
+
+.pix-scanlines::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 30;
+  pointer-events: none;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent 0 3px,
+    var(--pix-scanline) 3px 4px
+  );
+}
+
+.pix-grid-bg {
+  background-color: var(--pix-bg);
+  background-image:
+    linear-gradient(var(--pix-grid-line) 1px, transparent 1px),
+    linear-gradient(90deg, var(--pix-grid-line) 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+
+.pix-checker-bg {
+  background-color: var(--pix-bg);
+  background-image:
+    linear-gradient(45deg, var(--pix-surface) 25%, transparent 25%),
+    linear-gradient(-45deg, var(--pix-surface) 25%, transparent 25%),
+    linear-gradient(45deg, transparent 75%, var(--pix-surface) 75%),
+    linear-gradient(-45deg, transparent 75%, var(--pix-surface) 75%);
+  background-size: 16px 16px;
+  background-position: 0 0, 0 8px, 8px -8px, -8px 0;
+}
+
+.pix-hidden { display: none !important; }
+
+@media (prefers-reduced-motion: reduce) {
+  .pix-btn,
+  .pix-tab,
+  .pix-toast,
+  .pix-modal,
+  .pix-modal__dialog,
+  .pix-menu {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+  }
+}

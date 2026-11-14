@@ -1,0 +1,96 @@
+/* =========================================================
+   PixelSmith UI — design tokens
+   Override these on :root or any container to re-theme.
+   ========================================================= */
+
+:root,
+[data-pix-theme='dark'],
+.pix-theme-dark {
+  color-scheme: dark;
+
+  --pix-bg: #0b0b12;
+  --pix-bg-alt: #11111d;
+  --pix-bg-raise: #171726;
+  --pix-surface: #151522;
+  --pix-surface-2: #1e1e30;
+  --pix-surface-3: #2a2a42;
+
+  --pix-ink: #f4f0e6;
+  --pix-ink-dim: #c4c0d0;
+  --pix-ink-mute: #827e96;
+  --pix-line: #f4f0e6;
+  --pix-line-soft: #3d3c55;
+  --pix-shadow: #05050a;
+
+  --pix-primary: #ffd23f;
+  --pix-primary-ink: #171018;
+  --pix-secondary: #5ce1e6;
+  --pix-secondary-ink: #08191b;
+  --pix-success: #7ee787;
+  --pix-success-ink: #07170a;
+  --pix-danger: #ff5d8f;
+  --pix-danger-ink: #1d0710;
+  --pix-warning: #ff9f43;
+  --pix-warning-ink: #1e1003;
+  --pix-info: #67b7ff;
+  --pix-info-ink: #06131f;
+  --pix-accent: #b197fc;
+
+  --pix-focus: #5ce1e6;
+
+  --pix-font-display: 'Press Start 2P', 'Courier New', monospace;
+  --pix-font-body: 'VT323', 'Courier New', monospace;
+  --pix-font-code: 'VT323', 'Courier New', monospace;
+
+  --pix-font-size: 20px;
+  --pix-line-height: 1.2;
+
+  --pix-border: 3px;
+  --pix-shadow-size: 5px;
+  --pix-radius: 0px;
+
+  --pix-z-dropdown: 60;
+  --pix-z-modal: 1000;
+  --pix-z-toast: 1100;
+
+  --pix-scanline: rgb(255 255 255 / 0.035);
+  --pix-grid-line: rgb(244 240 230 / 0.055);
+}
+
+[data-pix-theme='light'],
+.pix-theme-light {
+  color-scheme: light;
+
+  --pix-bg: #f7f2e3;
+  --pix-bg-alt: #efe7d4;
+  --pix-bg-raise: #fffaf0;
+  --pix-surface: #fffaf0;
+  --pix-surface-2: #f2ead8;
+  --pix-surface-3: #e4d9c2;
+
+  --pix-ink: #1b1626;
+  --pix-ink-dim: #4c455e;
+  --pix-ink-mute: #7d7590;
+  --pix-line: #1b1626;
+  --pix-line-soft: #c9bea7;
+  --pix-shadow: #1b1626;
+
+  --pix-primary: #ffcf33;
+  --pix-primary-ink: #1b1626;
+  --pix-secondary: #22b8bd;
+  --pix-secondary-ink: #04191a;
+  --pix-success: #47b95c;
+  --pix-success-ink: #04170a;
+  --pix-danger: #e83e72;
+  --pix-danger-ink: #fff5f8;
+  --pix-warning: #e7822c;
+  --pix-warning-ink: #1e1003;
+  --pix-info: #2f8fe0;
+  --pix-info-ink: #f3faff;
+  --pix-accent: #7c5cd6;
+
+  --pix-focus: #116e73;
+
+  --pix-scanline: rgb(27 22 38 / 0.04);
+  --pix-grid-line: rgb(27 22 38 / 0.07);
+}

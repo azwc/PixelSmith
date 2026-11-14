@@ -1,0 +1,75 @@
+.pix-progress {
+  --pix-progress-color: var(--pix-primary);
+  display: grid;
+  gap: 7px;
+  width: 100%;
+}
+
+.pix-progress__head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+  font-family: var(--pix-font-display);
+  font-size: 8px;
+  line-height: 1.5;
+  text-transform: uppercase;
+}
+
+.pix-progress__label { color: var(--pix-ink-dim); }
+
+.pix-progress__value {
+  color: var(--pix-ink);
+  font-variant-numeric: tabular-nums;
+}
+
+.pix-progress__track {
+  position: relative;
+  width: 100%;
+  height: 22px;
+  padding: 2px;
+  border: var(--pix-border) solid var(--pix-line);
+  background: var(--pix-bg-alt);
+  box-shadow: inset 3px 3px 0 rgb(0 0 0 / 0.22);
+  overflow: hidden;
+}
+
+.pix-progress__bar {
+  width: var(--pix-progress-value, 0%);
+  height: 100%;
+  background-color: var(--pix-progress-color);
+  background-image: repeating-linear-gradient(
+    90deg,
+    transparent 0 7px,
+    rgb(0 0 0 / 0.22) 7px 9px
+  );
+  transition: width 200ms steps(8);
+}
+
+.pix-progress--secondary { --pix-progress-color: var(--pix-secondary); }
+.pix-progress--success { --pix-progress-color: var(--pix-success); }
+.pix-progress--danger { --pix-progress-color: var(--pix-danger); }
+.pix-progress--info { --pix-progress-color: var(--pix-info); }
+.pix-progress--accent { --pix-progress-color: var(--pix-accent); }
+
+.pix-progress--sm .pix-progress__track { height: 14px; }
+.pix-progress--lg .pix-progress__track { height: 32px; }
+
+.pix-progress--indeterminate .pix-progress__bar {
+  width: 34%;
+  animation: pix-progress-slide 1.1s steps(8) infinite;
+}
+
+@keyframes pix-progress-slide {
+  0% { transform: translateX(-110%); }
+  100% { transform: translateX(310%); }
+}
+
+.pix-progress--striped .pix-progress__bar {
+  background-color: var(--pix-progress-color);
+  background-image: repeating-linear-gradient(
+    90deg,
+    transparent 0 7px,
+    rgb(0 0 0 / 0.22) 7px 9px
+  );
+}

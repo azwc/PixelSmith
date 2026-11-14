@@ -1,0 +1,81 @@
+.pix-table-wrap {
+  width: 100%;
+  overflow: auto;
+  border: var(--pix-border) solid var(--pix-line);
+  background: var(--pix-surface);
+  box-shadow: var(--pix-shadow-size) var(--pix-shadow-size) 0 var(--pix-shadow);
+}
+
+.pix-table {
+  width: 100%;
+  border-collapse: collapse;
+  color: var(--pix-ink);
+  font-family: var(--pix-font-body);
+  font-size: 19px;
+  line-height: 1.2;
+}
+
+.pix-table caption {
+  padding: 10px 12px;
+  color: var(--pix-ink-dim);
+  font-family: var(--pix-font-display);
+  font-size: 8px;
+  text-align: left;
+  text-transform: uppercase;
+}
+
+.pix-table th {
+  padding: 10px 12px;
+  border-bottom: var(--pix-border) solid var(--pix-line);
+  background: var(--pix-line);
+  color: var(--pix-bg);
+  font-family: var(--pix-font-display);
+  font-size: 7px;
+  font-weight: 400;
+  line-height: 1.5;
+  text-align: left;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.pix-table td {
+  padding: 9px 12px;
+  border-bottom: 2px dashed var(--pix-line-soft);
+  vertical-align: middle;
+}
+
+.pix-table tbody tr:last-child td { border-bottom: 0; }
+
+.pix-table tbody tr:hover {
+  background: var(--pix-surface-2);
+}
+
+.pix-table--striped tbody tr:nth-child(even) {
+  background: var(--pix-surface-2);
+}
+
+.pix-table--striped tbody tr:nth-child(even):hover {
+  background: var(--pix-surface-3);
+}
+
+.pix-table--compact th,
+.pix-table--compact td {
+  padding: 6px 9px;
+}
+
+.pix-table__num {
+  font-variant-numeric: tabular-nums;
+  text-align: right;
+}
+
+.pix-table__actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 6px;
+}
+
+.pix-table__empty {
+  padding: 28px 12px;
+  color: var(--pix-ink-mute);
+  text-align: center;
+}

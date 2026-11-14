@@ -1,0 +1,385 @@
+<!doctype html>
+<html lang="en" data-pix-theme="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PixelSmith UI — Vanilla Mode</title>
+    <link rel="stylesheet" href="../dist/pixelsmith.css" />
+    <style>
+      * { box-sizing: border-box; }
+      html { background: #0b0b12; }
+      body {
+        margin: 0;
+        min-width: 320px;
+        background-color: var(--pix-bg);
+        background-image:
+          linear-gradient(var(--pix-grid-line) 1px, transparent 1px),
+          linear-gradient(90deg, var(--pix-grid-line) 1px, transparent 1px);
+        background-size: 32px 32px;
+      }
+      .page { width: min(1080px, calc(100% - 40px)); margin: 0 auto; }
+      .topbar {
+        display: flex; align-items: center; justify-content: space-between; gap: 16px;
+        padding: 18px 0; border-bottom: 3px solid var(--pix-line);
+      }
+      .brand { display: flex; align-items: center; gap: 14px; }
+      .brand__mark {
+        display: grid; place-items: center; width: 44px; height: 44px;
+        border: 3px solid var(--pix-line); background: var(--pix-primary);
+        color: var(--pix-bg); box-shadow: 4px 4px 0 var(--pix-shadow);
+        font-family: var(--pix-font-display); font-size: 12px;
+      }
+      .brand__text { display: grid; gap: 3px; }
+      .brand__name { font-family: var(--pix-font-display); font-size: 12px; }
+      .brand__sub { color: var(--pix-ink-mute); font-family: var(--pix-font-display); font-size: 6px; }
+      .topbar__actions { display: flex; align-items: center; gap: 10px; }
+      .hero {
+        display: grid; grid-template-columns: 1.05fr .95fr; gap: 28px;
+        align-items: start; padding: 52px 0 38px;
+      }
+      .hero h1 {
+        margin: 16px 0 18px; font-family: var(--pix-font-display); font-size: clamp(24px, 4.2vw, 42px);
+        line-height: 1.35; text-transform: uppercase; font-weight: 400;
+      }
+      .hero h1 span { color: var(--pix-primary); text-shadow: 3px 3px 0 var(--pix-shadow); }
+      .hero p { margin: 0 0 22px; max-width: 520px; color: var(--pix-ink-dim); font-size: 22px; }
+      .hero__actions { display: flex; flex-wrap: wrap; gap: 12px; }
+      .grid { display: grid; grid-template-columns: 1.05fr .95fr; gap: 20px; padding-bottom: 26px; }
+      .grid--three { grid-template-columns: repeat(3, 1fr); }
+      .stack { display: grid; gap: 14px; }
+      .label { color: var(--pix-ink-mute); font-family: var(--pix-font-display); font-size: 6px; letter-spacing: .08em; }
+      .row { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
+      .tooltip-anchor { display: inline-flex; }
+      .tabs { margin-top: 2px; }
+      .table-wrap { margin: 0; }
+      .footer {
+        display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px;
+        padding: 22px 0 40px; border-top: 3px dashed var(--pix-line-soft);
+        color: var(--pix-ink-mute); font-family: var(--pix-font-display); font-size: 6px;
+      }
+      .footer a { color: var(--pix-secondary); }
+      .checklist { display: grid; gap: 10px; margin: 0; padding: 0; list-style: none; color: var(--pix-ink-dim); font-size: 19px; }
+      .checklist li::before { content: '✓'; margin-right: 8px; color: var(--pix-success); }
+      .code-line {
+        overflow: auto; padding: 10px 12px; border: 2px solid var(--pix-line-soft);
+        background: var(--pix-bg-alt); color: var(--pix-secondary); font-family: var(--pix-font-code); font-size: 18px;
+      }
+      @media (max-width: 860px) {
+        .hero, .grid, .grid--three { grid-template-columns: 1fr; }
+        .hero { padding-top: 34px; }
+        .brand__name { font-size: 9px; }
+      }
+      @media (max-width: 520px) {
+        .page { width: calc(100% - 24px); }
+        .topbar { flex-wrap: wrap; }
+        .hero h1 { font-size: 24px; }
+        .hero__actions .pix-btn { width: 100%; }
+      }
+    </style>
+  </head>
+  <body id="top" class="pix-root">
+    <div class="page">
+      <header class="topbar">
+        <div class="brand">
+          <span class="brand__mark" aria-hidden="true">P</span>
+          <span class="brand__text">
+            <span class="brand__name">PIXELSMITH <span style="color: var(--pix-primary)">UI</span></span>
+            <span class="brand__sub">VANILLA MODE / CSS + JS ONLY</span>
+          </span>
+        </div>
+        <div class="topbar__actions">
+          <a class="pix-btn pix-btn--ghost pix-btn--sm" href="../index.html">VUE DEMO</a>
+          <button type="button" class="pix-btn pix-btn--secondary pix-btn--sm" id="theme-toggle">LIGHT MODE</button>
+        </div>
+      </header>
+
+      <main>
+        <section class="hero">
+          <div>
+            <p class="pix-eyebrow">NO BUILD STEP REQUIRED</p>
+            <h1 aria-label="Still chunky. Still serious.">STILL CHUNKY.<br /><span>STILL SERIOUS.</span></h1>
+            <p>
+              This page loads one CSS file and one small JS file. No bundler, no
+              framework, no npm install. The buttons, fields, tabs and overlays are
+              the exact same primitives the Vue build uses.
+            </p>
+            <div class="hero__actions">
+              <button type="button" class="pix-btn pix-btn--primary pix-btn--lg" data-pix-open="vanilla-modal">
+                OPEN MODAL
+              </button>
+              <button type="button" class="pix-btn pix-btn--ghost pix-btn--lg" id="toast-button">
+                FIRE A TOAST
+              </button>
+            </div>
+          </div>
+
+          <div class="pix-panel">
+            <div class="pix-panel__titlebar">
+              <span class="pix-panel__dots" aria-hidden="true">
+                <span class="pix-panel__dot"></span>
+                <span class="pix-panel__dot"></span>
+                <span class="pix-panel__dot"></span>
+              </span>
+              <h2 class="pix-panel__title">LOAD ORDER</h2>
+            </div>
+            <div class="pix-panel__body">
+              <div class="code-line">&lt;link rel="stylesheet" href="pixelsmith.css"&gt;</div>
+              <div class="code-line" style="margin-top: 10px">&lt;script src="pixelsmith.js"&gt;&lt;/script&gt;</div>
+              <p class="pix-text pix-text--sm pix-text--dim" style="margin-top: 16px">
+                The script auto-mounts declarative components and exposes
+                <code class="pix-code-inline">window.PixelUI</code> for imperative
+                calls.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <section class="grid">
+          <div class="pix-panel">
+            <div class="pix-panel__titlebar">
+              <span class="pix-panel__dots" aria-hidden="true">
+                <span class="pix-panel__dot"></span>
+                <span class="pix-panel__dot"></span>
+                <span class="pix-panel__dot"></span>
+              </span>
+              <h2 class="pix-panel__title">SIGNAL FORM</h2>
+              <span class="pix-panel__titlebar-spacer"></span>
+              <span class="pix-badge pix-badge--primary">LIVE</span>
+            </div>
+            <div class="pix-panel__body">
+              <form id="signal-form" class="stack" novalidate>
+                <div class="pix-field">
+                  <label class="pix-field__label" for="callsign">Callsign <span class="pix-field__required">*</span></label>
+                  <input class="pix-input" id="callsign" name="callsign" value="NOVA" required />
+                </div>
+                <div class="pix-field">
+                  <label class="pix-field__label" for="frequency">Frequency</label>
+                  <div class="pix-select-wrap">
+                    <select class="pix-select" id="frequency" name="frequency">
+                      <option value="88">88.1 FM</option>
+                      <option value="99" selected>99.9 FM</option>
+                      <option value="108">108.0 FM</option>
+                    </select>
+                  </div>
+                  <p class="pix-field__hint">Native select, pixel chevron.</p>
+                </div>
+                <div class="row">
+                  <label class="pix-check">
+                    <input class="pix-check__input" type="checkbox" checked />
+                    <span class="pix-check__box" aria-hidden="true"></span>
+                    <span class="pix-check__text"><span class="pix-check__label">Encrypt signal</span></span>
+                  </label>
+                  <label class="pix-switch">
+                    <input class="pix-switch__input" type="checkbox" role="switch" checked aria-checked="true" />
+                    <span class="pix-switch__track" aria-hidden="true"><span class="pix-switch__thumb"></span></span>
+                    <span class="pix-switch__text"><span class="pix-switch__label">Auto-pilot</span></span>
+                  </label>
+                </div>
+                <button type="submit" class="pix-btn pix-btn--primary pix-btn--block">TRANSMIT</button>
+              </form>
+            </div>
+          </div>
+
+          <div class="pix-panel">
+            <div class="pix-panel__titlebar">
+              <span class="pix-panel__dots" aria-hidden="true">
+                <span class="pix-panel__dot"></span>
+                <span class="pix-panel__dot"></span>
+                <span class="pix-panel__dot"></span>
+              </span>
+              <h2 class="pix-panel__title">DECLARATIVE WIDGETS</h2>
+            </div>
+            <div class="pix-panel__body">
+              <div class="pix-tabs" data-pix="tabs">
+                <div class="pix-tabs__list" role="tablist" aria-label="Vanilla tabs">
+                  <button type="button" class="pix-tab" data-pix-tab="one" aria-selected="true">ONE</button>
+                  <button type="button" class="pix-tab" data-pix-tab="two">TWO</button>
+                  <button type="button" class="pix-tab" data-pix-tab="three">THREE</button>
+                </div>
+                <div class="pix-tab-panel" data-pix-panel="one" role="tabpanel">
+                  <p class="pix-text">Tabs are wired from a single <code class="pix-code-inline">data-pix="tabs"</code> attribute. Arrow keys, Home and End work already.</p>
+                </div>
+                <div class="pix-tab-panel" data-pix-panel="two" role="tabpanel" hidden>
+                  <p class="pix-text">Panels keep their DOM state while hidden. No virtual DOM, no framework.</p>
+                </div>
+                <div class="pix-tab-panel" data-pix-panel="three" role="tabpanel" hidden>
+                  <p class="pix-text">The runtime dispatches <code class="pix-code-inline">pix:tab-change</code> for your own glue code.</p>
+                </div>
+              </div>
+
+              <hr class="pix-divider" style="margin: 20px 0" />
+
+              <div class="row">
+                <div class="pix-dropdown" data-pix="dropdown">
+                  <button type="button" class="pix-btn pix-btn--secondary pix-btn--sm" data-pix-dropdown-trigger>
+                    ACTIONS <span aria-hidden="true">▾</span>
+                  </button>
+                  <div class="pix-menu" data-pix-dropdown-menu role="menu" aria-label="Actions" hidden>
+                    <div class="pix-menu__label">SIGNAL</div>
+                    <button type="button" class="pix-menu__item" data-pix-value="boost">Boost power</button>
+                    <button type="button" class="pix-menu__item" data-pix-value="scan">Scan sector</button>
+                    <div class="pix-menu__separator"></div>
+                    <button type="button" class="pix-menu__item pix-menu__item--danger" data-pix-value="abort">Abort mission</button>
+                  </div>
+                </div>
+
+                <span class="tooltip-anchor" data-pix-tooltip="A tooltip from a data attribute" data-pix-tooltip-pos="bottom">
+                  <button type="button" class="pix-btn pix-btn--ghost pix-btn--sm">HOVER ME</button>
+                </span>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="grid">
+          <div class="pix-panel">
+            <div class="pix-panel__titlebar">
+              <span class="pix-panel__dots" aria-hidden="true">
+                <span class="pix-panel__dot"></span>
+                <span class="pix-panel__dot"></span>
+                <span class="pix-panel__dot"></span>
+              </span>
+              <h2 class="pix-panel__title">STATUS FEED</h2>
+            </div>
+            <div class="pix-panel__body stack">
+              <div class="pix-progress">
+                <div class="pix-progress__head"><span class="pix-progress__label">POWER</span><span class="pix-progress__value">72%</span></div>
+                <div class="pix-progress__track"><div class="pix-progress__bar" style="--pix-progress-value: 72%"></div></div>
+              </div>
+              <div class="pix-progress pix-progress--secondary">
+                <div class="pix-progress__head"><span class="pix-progress__label">SIGNAL</span><span class="pix-progress__value">41%</span></div>
+                <div class="pix-progress__track"><div class="pix-progress__bar" style="--pix-progress-value: 41%"></div></div>
+              </div>
+              <div class="pix-alert pix-alert--success" role="status">
+                <span class="pix-alert__icon" aria-hidden="true">✓</span>
+                <div class="pix-alert__body">
+                  <p class="pix-alert__title">All systems nominal</p>
+                  <p class="pix-alert__message">The vanilla bundle is 13 KB and has zero dependencies.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="pix-panel">
+            <div class="pix-panel__titlebar">
+              <span class="pix-panel__dots" aria-hidden="true">
+                <span class="pix-panel__dot"></span>
+                <span class="pix-panel__dot"></span>
+                <span class="pix-panel__dot"></span>
+              </span>
+              <h2 class="pix-panel__title">SECTOR BOARD</h2>
+            </div>
+            <div class="pix-panel__body" style="padding: 0">
+              <div class="pix-table-wrap table-wrap" style="border: 0; box-shadow: none">
+                <table class="pix-table pix-table--striped">
+                  <thead>
+                    <tr><th>SECTOR</th><th class="pix-table__num">POWER</th><th>STATUS</th></tr>
+                  </thead>
+                  <tbody>
+                    <tr><td>ALPHA-7</td><td class="pix-table__num">98%</td><td><span class="pix-badge pix-badge--success" style="box-shadow:none">ONLINE</span></td></tr>
+                    <tr><td>BETA-2</td><td class="pix-table__num">74%</td><td><span class="pix-badge pix-badge--success" style="box-shadow:none">ONLINE</span></td></tr>
+                    <tr><td>GAMMA-9</td><td class="pix-table__num">31%</td><td><span class="pix-badge pix-badge--warning" style="box-shadow:none">LOW</span></td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </section>
+      </main>
+
+      <footer class="footer">
+        <span>© 2026 PIXELSMITH UI / VANILLA MODE</span>
+        <span><a href="../index.html">BACK TO VUE DEMO</a> · <a href="#top">TOP</a></span>
+      </footer>
+    </div>
+
+    <!-- Modal is enhanced by the runtime on load -->
+    <div class="pix-modal" id="vanilla-modal" data-pix="modal" aria-hidden="true">
+      <div class="pix-modal__backdrop" data-pix-close></div>
+      <div class="pix-modal__dialog">
+        <section class="pix-panel pix-modal__panel">
+          <div class="pix-panel__titlebar">
+            <span class="pix-panel__dots" aria-hidden="true">
+              <span class="pix-panel__dot"></span>
+              <span class="pix-panel__dot"></span>
+              <span class="pix-panel__dot"></span>
+            </span>
+            <h2 class="pix-panel__title">ABORT MISSION?</h2>
+            <span class="pix-panel__titlebar-spacer"></span>
+            <button type="button" class="pix-modal__close" data-pix-close aria-label="Close dialog">×</button>
+          </div>
+          <div class="pix-panel__body">
+            <p class="pix-text">This action cannot be undone. The pixels will scatter into the void.</p>
+            <div class="pix-alert pix-alert--warning" role="alert" style="margin-top: 14px">
+              <span class="pix-alert__icon" aria-hidden="true">!</span>
+              <div class="pix-alert__body">
+                <p class="pix-alert__title">Confirm destructive action</p>
+                <p class="pix-alert__message">All unsaved signal data will be lost.</p>
+              </div>
+            </div>
+          </div>
+          <div class="pix-panel__footer">
+            <button type="button" class="pix-btn pix-btn--ghost" data-pix-close>CANCEL</button>
+            <button type="button" class="pix-btn pix-btn--danger" id="abort-confirm">YES, ABORT</button>
+          </div>
+        </section>
+      </div>
+    </div>
+
+    <script src="../dist/pixelsmith.js"></script>
+    <script>
+      const toast = (options) => window.PixelUI.toast(options)
+
+      document.getElementById('toast-button').addEventListener('click', () => {
+        toast({
+          tone: 'success',
+          title: 'Signal sent',
+          message: 'Your message reached sector ALPHA-7.',
+          duration: 3200
+        })
+      })
+
+      document.getElementById('abort-confirm').addEventListener('click', () => {
+        window.PixelUI.closeModal('vanilla-modal')
+        toast({
+          tone: 'danger',
+          title: 'Mission aborted',
+          message: 'No pixels were harmed in the making of this demo.'
+        })
+      })
+
+      document.getElementById('signal-form').addEventListener('submit', (event) => {
+        event.preventDefault()
+        const callsign = document.getElementById('callsign')
+        if (!callsign.value.trim()) {
+          callsign.setAttribute('aria-invalid', 'true')
+          toast({ tone: 'danger', title: 'Missing callsign', message: 'Every transmission needs a name.' })
+          callsign.focus()
+          return
+        }
+        callsign.removeAttribute('aria-invalid')
+        toast({ tone: 'success', title: 'Transmitted', message: 'Signal boosted by 12 decibels.' })
+      })
+
+      document.querySelector('[data-pix="dropdown"]').addEventListener('pix:select', (event) => {
+        toast({
+          tone: event.detail.value === 'abort' ? 'danger' : 'info',
+          title: 'Action selected',
+          message: 'Menu item: ' + event.detail.value
+        })
+      })
+
+      const themeButton = document.getElementById('theme-toggle')
+      themeButton.addEventListener('click', () => {
+        const root = document.documentElement
+        const next = root.dataset.pixTheme === 'light' ? 'dark' : 'light'
+        root.dataset.pixTheme = next
+        themeButton.textContent = next === 'light' ? 'DARK MODE' : 'LIGHT MODE'
+      })
+
+      document.querySelectorAll('[role="switch"]').forEach((input) => {
+        input.addEventListener('change', () => input.setAttribute('aria-checked', String(input.checked)))
+      })
+    </script>
+  </body>
+</html>

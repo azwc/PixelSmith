@@ -1,0 +1,9 @@
+node_modules/
+dist/
+demo-dist/
+.cache/
+.npm-cache/
+.npm-logs/
+*.local
+.DS_Store
+coverage/

@@ -1,0 +1,39 @@
+.pix-avatar {
+  display: inline-grid;
+  place-items: center;
+  flex: none;
+  width: 44px;
+  height: 44px;
+  overflow: hidden;
+  border: var(--pix-border) solid var(--pix-line);
+  background: var(--pix-primary);
+  color: var(--pix-primary-ink);
+  box-shadow: 3px 3px 0 var(--pix-shadow);
+  font-family: var(--pix-font-display);
+  font-size: 11px;
+  line-height: 1;
+  text-transform: uppercase;
+}
+
+.pix-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  image-rendering: pixelated;
+}
+
+.pix-avatar--sm { width: 32px; height: 32px; font-size: 8px; }
+.pix-avatar--lg { width: 64px; height: 64px; font-size: 15px; }
+.pix-avatar--secondary { background: var(--pix-secondary); color: var(--pix-secondary-ink); }
+.pix-avatar--success { background: var(--pix-success); color: var(--pix-success-ink); }
+.pix-avatar--danger { background: var(--pix-danger); color: var(--pix-danger-ink); }
+.pix-avatar--accent { background: var(--pix-accent); color: #170f2a; }
+
+.pix-avatar-group {
+  display: inline-flex;
+  align-items: center;
+}
+
+.pix-avatar-group .pix-avatar + .pix-avatar {
+  margin-left: -12px;
+}

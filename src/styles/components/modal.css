@@ -1,0 +1,128 @@
+.pix-modal {
+  position: fixed;
+  inset: 0;
+  z-index: var(--pix-z-modal);
+  display: grid;
+  place-items: center;
+  padding: 24px;
+  visibility: hidden;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 120ms steps(3);
+}
+
+.pix-modal.is-open {
+  visibility: visible;
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.pix-modal__backdrop {
+  position: absolute;
+  inset: 0;
+  background-color: rgb(5 5 10 / 0.84);
+  background-image: repeating-linear-gradient(
+    0deg,
+    transparent 0 3px,
+    rgb(255 255 255 / 0.035) 3px 4px
+  );
+  cursor: pointer;
+}
+
+.pix-modal__dialog {
+  position: relative;
+  z-index: 1;
+  width: min(560px, 100%);
+  max-height: calc(100vh - 48px);
+  outline: none;
+  transform: translateY(12px) scale(0.98);
+  transition: transform 120ms steps(3);
+}
+
+.pix-modal.is-open .pix-modal__dialog {
+  transform: translateY(0) scale(1);
+}
+
+.pix-modal--sm .pix-modal__dialog { width: min(420px, 100%); }
+.pix-modal--lg .pix-modal__dialog { width: min(760px, 100%); }
+.pix-modal--xl .pix-modal__dialog { width: min(1040px, 100%); }
+
+.pix-modal__panel {
+  max-height: calc(100vh - 48px);
+  box-shadow: 10px 10px 0 var(--pix-shadow);
+}
+
+.pix-modal__panel .pix-panel__body {
+  max-height: min(62vh, 620px);
+  overflow: auto;
+}
+
+.pix-modal__close {
+  display: inline-grid;
+  place-items: center;
+  flex: none;
+  width: 26px;
+  height: 26px;
+  padding: 0;
+  border: 2px solid currentColor;
+  border-radius: 0;
+  background: transparent;
+  color: inherit;
+  font-family: var(--pix-font-display);
+  font-size: 13px;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.pix-modal__close:hover {
+  background: var(--pix-danger);
+  color: var(--pix-danger-ink);
+  border-color: var(--pix-danger);
+}
+
+.pix-modal__close:focus-visible {
+  outline: 3px solid var(--pix-focus);
+  outline-offset: 2px;
+}
+
+.pix-modal__titlebar {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.pix-modal__titlebar .pix-panel__title {
+  flex: 1;
+}
+
+body.pix-modal-open {
+  overflow: hidden;
+}
+
+/* Vue <Transition name="pix-modal-vue"> */
+.pix-modal-vue-enter-active,
+.pix-modal-vue-leave-active {
+  transition: opacity 120ms steps(3);
+}
+
+.pix-modal-vue-enter-from,
+.pix-modal-vue-leave-to {
+  opacity: 0;
+}
+
+.pix-modal-vue-enter-active .pix-modal__dialog,
+.pix-modal-vue-leave-active .pix-modal__dialog {
+  transition: transform 120ms steps(3);
+}
+
+.pix-modal-vue-enter-from .pix-modal__dialog,
+.pix-modal-vue-leave-to .pix-modal__dialog {
+  transform: translateY(12px) scale(0.98);
+}
+
+@media (max-width: 560px) {
+  .pix-modal { padding: 12px; }
+  .pix-modal__dialog,
+  .pix-modal__panel { max-height: calc(100vh - 24px); }
+  .pix-modal__panel .pix-panel__body { max-height: calc(100vh - 180px); }
+}

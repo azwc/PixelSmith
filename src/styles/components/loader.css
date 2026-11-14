@@ -1,0 +1,44 @@
+.pix-loader {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  height: 1em;
+  color: currentColor;
+}
+
+.pix-loader span {
+  display: block;
+  width: 6px;
+  height: 6px;
+  background: currentColor;
+  animation: pix-loader-pulse 900ms steps(2) infinite;
+}
+
+.pix-loader span:nth-child(2) { animation-delay: 120ms; }
+.pix-loader span:nth-child(3) { animation-delay: 240ms; }
+
+.pix-loader--lg { gap: 6px; }
+.pix-loader--lg span { width: 10px; height: 10px; }
+
+.pix-spinner {
+  display: inline-block;
+  width: 24px;
+  height: 24px;
+  background:
+    linear-gradient(currentColor 0 0) 0 0 / 8px 8px no-repeat,
+    linear-gradient(currentColor 0 0) 100% 0 / 8px 8px no-repeat,
+    linear-gradient(currentColor 0 0) 100% 100% / 8px 8px no-repeat,
+    linear-gradient(currentColor 0 0) 0 100% / 8px 8px no-repeat;
+  animation: pix-spinner-turn 900ms steps(4) infinite;
+}
+
+@keyframes pix-loader-pulse {
+  0%, 60%, 100% { opacity: 0.25; transform: translateY(0); }
+  30% { opacity: 1; transform: translateY(-3px); }
+}
+
+@keyframes pix-spinner-turn {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
