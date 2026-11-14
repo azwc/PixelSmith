@@ -7,3 +7,7 @@ demo-dist/
 *.local
 .DS_Store
 coverage/
+
+# Local-only deployment notes and scripts (not part of this package)
+/DEPLOYMENT.md
+/deploy/
