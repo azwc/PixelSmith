@@ -37,8 +37,8 @@ management, keyboard support, and light/dark themes all ship in the box.
 ~~~bash
 git clone https://github.com/azwc/PixelSmith.git
 cd PixelSmith
-pnpm install
-pnpm dev
+pnpm install   # or: npm install
+pnpm dev       # or: npm run dev
 ~~~
 
 The demo runs at <code>http://127.0.0.1:5174</code>. The repository does not
@@ -232,29 +232,36 @@ and are not published to a registry.
 
 This is a source-only repository. There is no package publish step.
 
+Both npm and pnpm work for local development. The repository includes a
+<code>pnpm-lock.yaml</code>; pick one manager and use it consistently.
+
 ~~~bash
-pnpm install
-pnpm dev          # demo at http://127.0.0.1:5174
-pnpm test         # Vitest + jsdom
-pnpm typecheck    # vue-tsc
-pnpm build        # ESM + standalone + Vue UMD + declarations
-pnpm build:demo   # static demo in demo-dist/
-pnpm preview      # serve demo-dist/ at :4173
-pnpm qa           # Playwright checks: overflow, focus, interactions, UMD
-pnpm screenshot   # Playwright screenshots into docs/screenshots/
+# install development dependencies
+pnpm install            # or: npm install
+
+# demo / checks / build
+pnpm dev                # or: npm run dev
+pnpm test               # or: npm test
+pnpm typecheck          # or: npm run typecheck
+pnpm build              # or: npm run build
+pnpm build:demo         # or: npm run build:demo
+pnpm preview            # or: npm run preview
+pnpm qa                 # or: npm run qa
+pnpm screenshot         # or: npm run screenshot
 ~~~
 
 The browser checks and screenshot command expect the demo to be served at
-<code>http://127.0.0.1:4173</code>. Run <code>pnpm preview</code> in another
-terminal first. The built demo is intentionally multi-artifact:
+<code>http://127.0.0.1:4173</code>. Run <code>pnpm preview</code> (or
+<code>npm run preview</code>) in another terminal first. The built demo is intentionally multi-artifact:
 <code>demo-dist/</code> contains the Vue showcase,
 <code>demo-dist/examples/standalone.html</code>, and a copy of the distributable
 library under <code>demo-dist/dist/</code>.
 
-<code>pnpm qa</code> currently checks 38 behaviors, including:
+<code>pnpm qa</code> / <code>npm run qa</code> currently checks 38 behaviors,
+including:
 
 - No page-level horizontal overflow at 320, 390, 768, 1024, and 1440px.
-- The install strip never leaves the viewport.
+- The clone strip never leaves the viewport.
 - Vue and standalone modal focus, Escape, and scroll lock.
 - Tabs, dropdowns, toasts, form validation, and theme switching.
 - The built Vue UMD bundle renders and receives the stylesheet.

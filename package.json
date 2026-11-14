@@ -34,7 +34,7 @@
     "build:standalone": "vite build --config vite.standalone.config.ts",
     "build:vue-umd": "vite build --config vite.vue-umd.config.ts",
     "build:types": "vue-tsc -p tsconfig.build.json",
-    "build": "pnpm run build:lib && pnpm run build:standalone && pnpm run build:vue-umd && pnpm run build:types",
+    "build": "vite build --config vite.config.ts && vite build --config vite.standalone.config.ts && vite build --config vite.vue-umd.config.ts && vue-tsc -p tsconfig.build.json",
     "build:demo": "vite build --config vite.demo.config.ts && node scripts/prepare-demo.mjs",
     "test": "vitest run",
     "test:watch": "vitest",
