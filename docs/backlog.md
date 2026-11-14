@@ -53,8 +53,49 @@ it still does not animate, look for a stray `animation: none` override. Either
 way, add `.pix-spinner` / `.pix-loader span` to the kit's reduced-motion block
 so consumers stop patching it locally.
 
+### 3. Light-theme token debt (F1–F8) — fix in the same pass
+
+**Reported:** the 0.2.0 theme tokens fail WCAG AA in several combinations, all
+exposed by the light theme, and the fix should land together with items 1 and 2.
+
+**Summary** (worst light-theme ratios; AA needs 4.5 for text, 3.0 for graphics):
+
+| # | Debt | Worst | Surface |
+| --- | --- | --- | --- |
+| F1 | `.pix-link` uses `--pix-secondary` as text; hover switches to `--pix-primary` | 2.17 / 1.32 | inline links, breadcrumb links |
+| F2 | `--pix-ink-mute` used for meaningful text | 3.64 (dark 4.19) | hints, captions, menu labels, code comments, ellipsis |
+| F3 | tone tokens used directly as `color` | 1.23 | field errors, menu danger item, code tokens, hover states |
+| F4 | on-tone labels (`danger-ink/danger`, `info-ink/info`) | 3.25 | danger buttons/badges/avatars, info badge |
+| F5 | accent fill + hardcoded `#170f2a` ink | 3.83 | accent badge/avatar |
+| F6 | alert icon = `--pix-bg` on the tone fill | 1.32 | every coloured alert in light |
+| F7 | non-text indicators: progress fill, focused input border | 1.20 / 2.33 | progress, slider, focused fields |
+| F8 | dark theme residual: `ink-mute / surface-2` | 4.19 | same muted surfaces as F2 |
+
+**Direction:** introduce semantic roles instead of using fill tokens as text —
+`--pix-link`, `--pix-<tone>-text`, `--pix-accent-ink`, `--pix-<tone>-graphic` —
+and migrate components to consume only those. That keeps tones as fills while
+text and graphics get AA-safe variants per theme.
+
+**Note:** the detailed per-rule report with the migration table is
+`docs/light-theme-token-debt.md` — a local-only document (see below), not part
+of the pushed repository.
+
 ### Review checklist for the next pass
 
 - [ ] Confirm whether both reports were observed with default motion settings.
 - [ ] Decide (a) vs (b) for the error state and write it here.
 - [ ] If the spinner is genuinely static, attach a screenshot pair as evidence.
+- [ ] Fix the light-theme token debt (item 3) in the same pass as items 1–2, with
+      before/after contrast numbers for F1–F8.
+
+## Local-only files — never pushed
+
+These exist in the working tree for review and must not be committed or pushed:
+
+| Path | Contents |
+| --- | --- |
+| `docs/light-theme-token-debt.md` | the full F1–F8 analysis and migration table referenced by item 3 |
+| `README.md` (modified) | the local edit that links to that report |
+
+Both are deliberately left out of every commit. If they are ever meant to ship,
+they need to be reviewed first and added explicitly.
