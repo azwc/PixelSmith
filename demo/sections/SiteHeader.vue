@@ -15,15 +15,17 @@ defineEmits<{
 const { toast } = useToast()
 const copied = ref(false)
 
-const copyInstall = async (): Promise<void> => {
-  const ok = await copyText('npm i pixelsmith-ui')
+const cloneCommand = 'git clone https://github.com/azwc/PixelSmith.git'
+
+const copyClone = async (): Promise<void> => {
+  const ok = await copyText(cloneCommand)
   if (!ok) return
   copied.value = true
   window.setTimeout(() => (copied.value = false), 1400)
   toast({
     tone: 'success',
-    title: 'Command copied',
-    message: 'npm i pixelsmith-ui',
+    title: 'Clone command copied',
+    message: cloneCommand,
     duration: 1800
   })
 }
@@ -51,11 +53,11 @@ const copyInstall = async (): Promise<void> => {
         <button
           type="button"
           class="demo-install-chip"
-          aria-label="Copy install command"
-          @click="copyInstall"
+          aria-label="Copy clone command"
+          @click="copyClone"
         >
           <span aria-hidden="true">$</span>
-          <code>{{ copied ? 'copied!' : 'npm i pixelsmith-ui' }}</code>
+          <code>{{ copied ? 'copied!' : 'git clone azwc/PixelSmith' }}</code>
         </button>
 
         <span class="pix-badge pix-badge--outline demo-version">v0.1.0</span>

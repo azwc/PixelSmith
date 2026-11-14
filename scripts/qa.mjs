@@ -30,16 +30,16 @@ for (const width of [320, 390, 768, 1024, 1440]) {
   await page.evaluate(() => document.fonts.ready)
 
   const metrics = await page.evaluate(() => {
-    const install = document.querySelector('.demo-install')?.getBoundingClientRect()
+    const clone = document.querySelector('.demo-install')?.getBoundingClientRect()
     return {
       innerWidth: window.innerWidth,
       scrollWidth: document.documentElement.scrollWidth,
-      installRight: install?.right ?? 0,
-      installVisible: install ? install.right <= window.innerWidth + 1 : false
+      cloneRight: clone?.right ?? 0,
+      cloneVisible: clone ? clone.right <= window.innerWidth + 1 : false
     }
   })
   check('no page-level horizontal overflow at ' + width + 'px', metrics.scrollWidth <= metrics.innerWidth + 1, JSON.stringify(metrics))
-  check('install command stays in the viewport at ' + width + 'px', metrics.installVisible, JSON.stringify(metrics))
+  check('clone command stays in the viewport at ' + width + 'px', metrics.cloneVisible, JSON.stringify(metrics))
   check('no runtime console errors at ' + width + 'px', errors.length === 0, errors.join('; '))
   await page.close()
 }

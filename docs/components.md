@@ -1,7 +1,7 @@
 # PixelSmith UI — Component API
 
-All Vue components are exported from <code>pixelsmith-ui/vue</code>. The same
-classes are available in the standalone stylesheet. Prop types are TypeScript
+All Vue components are exported from the repository's Vue entry at
+<code>src/vue</code>. The same classes are available in the standalone stylesheet. Prop types are TypeScript
 types; defaults are listed in parentheses.
 
 ## Conventions
@@ -220,7 +220,7 @@ Props: <code>src</code>, <code>alt</code>, <code>initials</code>,
 # Toast
 
 ~~~ts
-import { toast, useToast } from 'pixelsmith-ui/vue'
+import { toast, useToast } from '../src/vue'
 
 toast({
   tone: 'success',   // PixelTone
@@ -239,7 +239,7 @@ hover and animate out before removal.
 # Vanilla runtime
 
 ~~~ts
-import { createPixelUI } from 'pixelsmith-ui'
+import { createPixelUI } from './src/index'
 
 const ui = createPixelUI()
 ui.mount()                       // scan document

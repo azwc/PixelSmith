@@ -7,15 +7,17 @@ import { copyText } from '../utils/copy'
 const { toast } = useToast()
 const copied = ref(false)
 
-const copyInstall = async (): Promise<void> => {
-  const ok = await copyText('npm i pixelsmith-ui')
+const cloneCommand = 'git clone https://github.com/azwc/PixelSmith.git'
+
+const copyClone = async (): Promise<void> => {
+  const ok = await copyText(cloneCommand)
   if (!ok) return
   copied.value = true
   window.setTimeout(() => (copied.value = false), 1600)
   toast({
     tone: 'success',
-    title: 'Copied',
-    message: 'npm i pixelsmith-ui',
+    title: 'Clone command copied',
+    message: cloneCommand,
     duration: 1800
   })
 }
@@ -37,8 +39,8 @@ const copyInstall = async (): Promise<void> => {
             Components are authored in Vue 3, then the behavior layer and CSS ship
             separately for plain HTML. Pick one. Mix them. No lock-in.
           </p>
-          <PxButton size="sm" tone="secondary" @click="copyInstall">
-            {{ copied ? 'COPIED!' : 'COPY INSTALL' }}
+          <PxButton size="sm" tone="secondary" @click="copyClone">
+            {{ copied ? 'COPIED!' : 'COPY CLONE' }}
           </PxButton>
         </div>
       </div>
@@ -53,8 +55,8 @@ const copyInstall = async (): Promise<void> => {
 
             <CodeBlock label="MAIN.TS">
 <span class="tok-key">import</span> { createApp } <span class="tok-key">from</span> <span class="tok-str">'vue'</span>
-<span class="tok-key">import</span> PixelSmith <span class="tok-key">from</span> <span class="tok-str">'pixelsmith-ui/vue'</span>
-<span class="tok-key">import</span> <span class="tok-str">'pixelsmith-ui/style.css'</span>
+<span class="tok-key">import</span> PixelSmith <span class="tok-key">from</span> <span class="tok-str">'../src/vue'</span>
+<span class="tok-key">import</span> <span class="tok-str">'../src/styles/index.css'</span>
 <span class="tok-key">import</span> App <span class="tok-key">from</span> <span class="tok-str">'./App.vue'</span>
 
 createApp(App)
@@ -84,8 +86,8 @@ createApp(App)
           <div class="demo-usage">
 
             <CodeBlock label="INDEX.HTML">
-&lt;link rel=<span class="tok-str">"stylesheet"</span> href=<span class="tok-str">"pixelsmith.css"</span>&gt;
-&lt;script src=<span class="tok-str">"pixelsmith.js"</span>&gt;&lt;/script&gt;
+&lt;link rel=<span class="tok-str">"stylesheet"</span> href=<span class="tok-str">"dist/pixelsmith.css"</span>&gt;
+&lt;script src=<span class="tok-str">"dist/pixelsmith.js"</span>&gt;&lt;/script&gt;
 
 &lt;button class=<span class="tok-str">"pix-btn pix-btn--primary"</span>&gt;
   SAVE THE DAY
@@ -102,7 +104,8 @@ PixelUI.toast({
             </CodeBlock>
 
             <p class="pix-text pix-text--sm pix-text--dim">
-              Behavior components are declarative too: add
+              Run <code class="pix-code-inline">pnpm build</code> first. Behavior
+              components are declarative too: add
               <code class="pix-code-inline">data-pix="tabs"</code> or
               <code class="pix-code-inline">data-pix-open="my-modal"</code> and the
               runtime wires it up.
@@ -117,7 +120,7 @@ PixelUI.toast({
           <span class="pix-btn__icon" aria-hidden="true">↗</span>
         </a>
         <a class="pix-btn pix-btn--ghost" href="#docs">READ THE DOCS</a>
-        <span class="demo-usage-actions__note">MIT LICENSE · NO TRACKERS · NO SURPRISES</span>
+        <span class="demo-usage-actions__note">SOURCE-ONLY · MIT LICENSE · NO REGISTRY PUBLISH</span>
       </div>
     </div>
   </section>

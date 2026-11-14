@@ -2,6 +2,10 @@
 
 **Chunky pixels. Serious interfaces.**
 
+> **Source-only project.** PixelSmith UI is not published to npm or pnpm.
+> Clone this repository, install the development dependencies, and build or run
+> the demo locally. There is no registry package to install.
+
 PixelSmith UI is a from-scratch, pixel-art UI kit for **Vue 3** and **plain HTML/CSS/JS**.
 It ships 16 accessible Vue components, a standalone stylesheet, and a tiny vanilla
 behavior runtime. No component framework is borrowed underneath it, no theme was
@@ -16,8 +20,10 @@ meant to be used: forms, tabs, dialogs, menus, toasts, tables, progress, focus
 management, keyboard support, and light/dark themes all ship in the box.
 
 - **16 Vue 3 components** with typed props, slots, and native events.
-- **Standalone CSS + JS bundle.** One stylesheet, one script tag, no build step.
-- **Zero runtime dependencies.** Vue is an optional peer dependency only.
+- **Standalone CSS + JS bundle.** One stylesheet, one script tag, built locally
+  from this source tree.
+- **Zero runtime dependencies.** The vanilla runtime has no dependencies; Vue is
+  used only by the Vue components and demo.
 - **Two themes, one token system.** Every visual choice is a CSS custom property.
 - **Accessibility is part of the component.** Focus traps, roving tabindex, ARIA
   wiring, reduced-motion support, and visible 3px focus rings.
@@ -26,25 +32,28 @@ management, keyboard support, and light/dark themes all ship in the box.
 - **Built from an empty folder.** The source is plain CSS, TypeScript, and Vue
   SFCs. There is no hidden copy of another design system.
 
-## Install
+## Run from source
 
 ~~~bash
-npm install pixelsmith-ui
-# or
-pnpm add pixelsmith-ui
+git clone https://github.com/azwc/PixelSmith.git
+cd PixelSmith
+pnpm install
+pnpm dev
 ~~~
 
-Vue is a peer dependency. It is optional if you only use the vanilla bundle.
+The demo runs at <code>http://127.0.0.1:5174</code>. The repository does not
+publish an npm or pnpm package; everything is built and served from this checkout.
 
-## Vue 3
+## Vue 3 (from this repository)
 
-Register the whole kit once:
+The demo entry imports the source directly. Adjust the relative paths if you copy
+the source into another folder.
 
 ~~~ts
-// main.ts
+// demo/main.ts
 import { createApp } from 'vue'
-import PixelSmith from 'pixelsmith-ui/vue'
-import 'pixelsmith-ui/style.css'
+import PixelSmith from '../src/vue'
+import '../src/styles/index.css'
 import App from './App.vue'
 
 createApp(App).use(PixelSmith).mount('#app')
@@ -54,8 +63,8 @@ Or import only the components you need:
 
 ~~~vue
 <script setup lang="ts">
-import { PxButton, PxInput, useToast } from 'pixelsmith-ui/vue'
-import 'pixelsmith-ui/style.css'
+import { PxButton, PxInput, useToast } from '../src/vue'
+import '../src/styles/index.css'
 
 const { toast } = useToast()
 </script>
@@ -69,14 +78,15 @@ const { toast } = useToast()
 The full component index and prop tables live in
 [docs/components.md](docs/components.md).
 
-### Vue via script tag
+### Vue via script tag (after build)
 
-The Vue UMD build is available for quick prototypes and no-build pages:
+Run <code>pnpm build</code> first. The generated Vue UMD bundle can then be used
+for quick prototypes and no-build pages:
 
 ~~~html
-<link rel="stylesheet" href="pixelsmith.css" />
+<link rel="stylesheet" href="./dist/pixelsmith.css" />
 <script src="vue.global.prod.js"></script>
-<script src="pixelsmith-vue.js"></script>
+<script src="./dist/pixelsmith-vue.js"></script>
 
 <div id="app"></div>
 <script>
@@ -86,11 +96,14 @@ The Vue UMD build is available for quick prototypes and no-build pages:
 </script>
 ~~~
 
-## Standalone / no build step
+## Standalone mode (after build)
+
+The repository ships source, not a registry bundle. Run <code>pnpm build</code>,
+then load the generated files from <code>dist/</code>:
 
 ~~~html
-<link rel="stylesheet" href="pixelsmith.css" />
-<script src="pixelsmith.js"></script>
+<link rel="stylesheet" href="./dist/pixelsmith.css" />
+<script src="./dist/pixelsmith.js"></script>
 
 <button class="pix-btn pix-btn--primary" data-pix-open="hello-modal">
   SAY HELLO
@@ -123,7 +136,8 @@ The IIFE bundle auto-mounts declarative components and exposes the manager as
 ### Imperative API
 
 ~~~ts
-import { createPixelUI } from 'pixelsmith-ui'
+// Import from this repository's source entry, or dist/index.js after a build.
+import { createPixelUI } from './src/index'
 
 const ui = createPixelUI()
 ui.mount()
@@ -200,17 +214,23 @@ PixelSmith UI is deliberately boring where it matters:
 - Icons that are decorative are marked <code>aria-hidden</code>; icon-only buttons
   require an accessible label.
 
-## Package exports
+## Build outputs
 
-| Import | File |
+These files are generated locally by <code>pnpm build</code>. They are gitignored
+and are not published to a registry.
+
+| Local file | Purpose |
 | --- | --- |
-| <code>pixelsmith-ui</code> | Vanilla manager, types, metadata |
-| <code>pixelsmith-ui/vue</code> | Vue components, plugin, toast composable |
-| <code>pixelsmith-ui/style.css</code> | The compiled stylesheet |
-| <code>pixelsmith-ui/standalone</code> | The auto-mounting IIFE bundle |
-| <code>unpkg.com/pixelsmith-ui</code> | IIFE bundle via the <code>unpkg</code> field |
+| <code>dist/index.js</code> | Vanilla manager ESM |
+| <code>dist/vue.js</code> | Vue components and plugin ESM |
+| <code>dist/pixelsmith.js</code> | Auto-mounting vanilla IIFE bundle |
+| <code>dist/pixelsmith-vue.js</code> | Vue UMD bundle |
+| <code>dist/pixelsmith.css</code> | Compiled stylesheet with embedded fonts |
+| <code>dist/types/</code> | TypeScript declarations |
 
 ## Development
+
+This is a source-only repository. There is no package publish step.
 
 ~~~bash
 pnpm install

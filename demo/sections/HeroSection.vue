@@ -8,8 +8,10 @@ import { copyText } from '../utils/copy'
 const { toast } = useToast()
 const copied = ref(false)
 
-const copyInstall = async (): Promise<void> => {
-  const ok = await copyText('npm i pixelsmith-ui')
+const cloneCommand = 'git clone https://github.com/azwc/PixelSmith.git'
+
+const copyClone = async (): Promise<void> => {
+  const ok = await copyText(cloneCommand)
   if (!ok) {
     toast({
       tone: 'warning',
@@ -22,8 +24,8 @@ const copyInstall = async (): Promise<void> => {
   window.setTimeout(() => (copied.value = false), 1600)
   toast({
     tone: 'success',
-    title: 'Ready to install',
-    message: 'npm i pixelsmith-ui — copied to clipboard.',
+    title: 'Ready to clone',
+    message: 'git clone https://github.com/azwc/PixelSmith.git — copied.',
     duration: 2200
   })
 }
@@ -64,8 +66,8 @@ const copyInstall = async (): Promise<void> => {
 
         <div class="demo-install">
           <span class="demo-install__prompt" aria-hidden="true">$</span>
-          <code>npm i pixelsmith-ui</code>
-          <button type="button" class="demo-install__copy" @click="copyInstall">
+          <code>git clone azwc/PixelSmith</code>
+          <button type="button" class="demo-install__copy" @click="copyClone">
             {{ copied ? 'COPIED' : 'COPY' }}
           </button>
         </div>

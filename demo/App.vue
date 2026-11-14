@@ -26,7 +26,7 @@ const ticker = [
 
     <div class="demo-announce">
       <span class="demo-announce__blink" aria-hidden="true"></span>
-      <span>PIXELSMITH UI 0.1.0 IS OUT</span>
+      <span>PIXELSMITH UI 0.1.0 · SOURCE-ONLY</span>
       <span class="demo-announce__divider" aria-hidden="true">/</span>
       <span class="demo-announce__muted">VUE 3 + VANILLA CSS + JS</span>
       <a href="#usage">GET STARTED →</a>
