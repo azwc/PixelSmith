@@ -287,6 +287,84 @@
         </section>
       </main>
 
+        <section class="grid" style="grid-template-columns: 1.1fr .9fr; padding-bottom: 26px;">
+          <div class="pix-panel">
+            <div class="pix-panel__titlebar">
+              <span class="pix-panel__dots" aria-hidden="true">
+                <span class="pix-panel__dot"></span>
+                <span class="pix-panel__dot"></span>
+                <span class="pix-panel__dot"></span>
+              </span>
+              <h2 class="pix-panel__title">DISCLOSURE / NO JS</h2>
+              <span class="pix-panel__titlebar-spacer"></span>
+              <span class="pix-badge pix-badge--accent">0.2</span>
+            </div>
+            <div class="pix-panel__body">
+              <nav class="pix-breadcrumb" aria-label="Breadcrumb">
+                <ol class="pix-breadcrumb__list">
+                  <li class="pix-breadcrumb__item"><a class="pix-breadcrumb__link" href="#top">Suite</a></li>
+                  <li class="pix-breadcrumb__item"><a class="pix-breadcrumb__link" href="#top">Components</a></li>
+                  <li class="pix-breadcrumb__item"><span class="pix-breadcrumb__current" aria-current="page">Vanilla</span></li>
+                </ol>
+              </nav>
+
+              <div class="pix-accordion" style="margin-top: 16px">
+                <details class="pix-accordion__item" open>
+                  <summary class="pix-accordion__trigger">
+                    Native accordion
+                    <span class="pix-accordion__mark" aria-hidden="true"></span>
+                  </summary>
+                  <div class="pix-accordion__panel">
+                    No script touches this. The disclosure is a plain
+                    <code class="pix-code-inline">details</code> element that the kit styles.
+                  </div>
+                </details>
+                <details class="pix-accordion__item">
+                  <summary class="pix-accordion__trigger">
+                    Keyboard ready
+                    <span class="pix-accordion__mark" aria-hidden="true"></span>
+                  </summary>
+                  <div class="pix-accordion__panel">
+                    Tab to the summary, press Enter or Space. Exclusive mode in the Vue
+                    build adds the native <code class="pix-code-inline">name</code> attribute.
+                  </div>
+                </details>
+              </div>
+            </div>
+          </div>
+
+          <div class="pix-panel">
+            <div class="pix-panel__titlebar">
+              <span class="pix-panel__dots" aria-hidden="true">
+                <span class="pix-panel__dot"></span>
+                <span class="pix-panel__dot"></span>
+                <span class="pix-panel__dot"></span>
+              </span>
+              <h2 class="pix-panel__title">LOADING &amp; RANGE</h2>
+              <span class="pix-panel__titlebar-spacer"></span>
+              <span class="pix-badge pix-badge--outline">CSS ONLY</span>
+            </div>
+            <div class="pix-panel__body">
+              <div class="row" style="align-items: flex-start; flex-wrap: nowrap; gap: 14px;">
+                <span class="pix-skeleton pix-skeleton--circle" role="status" aria-label="Loading profile"></span>
+                <span style="display: grid; flex: 1; gap: 8px; min-width: 0;">
+                  <span class="pix-skeleton pix-skeleton--text" aria-hidden="true"></span>
+                  <span class="pix-skeleton pix-skeleton--text" aria-hidden="true" style="width: 68%;"></span>
+                </span>
+              </div>
+
+              <div class="pix-field" style="margin-top: 18px;">
+                <label class="pix-field__label" for="signal-volume">
+                  Volume
+                  <span class="pix-slider__readout" aria-hidden="true">64%</span>
+                </label>
+                <input class="pix-slider" id="signal-volume" type="range" min="0" max="100" value="64" />
+                <p class="pix-field__hint">Native range input, pixel thumb.</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
       <footer class="footer">
         <span>© 2026 PIXELSMITH UI / VANILLA MODE</span>
         <span><a href="../index.html">BACK TO VUE DEMO</a> · <a href="#top">TOP</a></span>

@@ -14,6 +14,32 @@ const tabs: PxTabItem[] = [
 ]
 
 const modalOpen = ref(false)
+const view = ref('grid')
+const density = ref('comfy')
+const page = ref(3)
+const volume = ref(64)
+const quality = ref(3)
+const openPanels = ref<string[]>(['a11y'])
+
+const views = [
+  { label: 'Grid', value: 'grid' },
+  { label: 'List', value: 'list' },
+  { label: 'Map', value: 'map' }
+]
+const densities = [
+  { label: 'Compact', value: 'compact' },
+  { label: 'Comfy', value: 'comfy' }
+]
+const crumbs = [
+  { label: 'Suite', href: '#theming' },
+  { label: 'Component lab', href: '#components' },
+  { label: 'Navigation' }
+]
+const panelItems = [
+  { id: 'a11y', label: 'Accessibility' },
+  { id: 'theme', label: 'Theming' },
+  { id: 'ship', label: 'Shipping' }
+]
 const form = reactive({
   name: 'Ada Lovelace',
   email: 'ada@pixelsmith.dev',
@@ -70,7 +96,7 @@ const deploy = (): void => {
   toast({
     tone: 'success',
     title: 'Deploy queued',
-    message: 'Build 0.1.0 is shipping to production.'
+    message: 'Build 0.2.0 is shipping to production.'
   })
 }
 
@@ -94,7 +120,7 @@ const players = [
           </h2>
         </div>
         <div class="demo-section__meta">
-          <span class="pix-badge pix-badge--primary pix-badge--lg">16 VUE COMPONENTS</span>
+          <span class="pix-badge pix-badge--primary pix-badge--lg">22 VUE COMPONENTS</span>
           <span class="pix-badge pix-badge--outline pix-badge--lg">CSS PRIMITIVES</span>
           <p>Every state below is live. Click, type, open, and poke at it.</p>
         </div>
@@ -249,7 +275,7 @@ const players = [
             </div>
 
             <PxAlert tone="success" title="Build complete">
-              All 16 components compiled with zero warnings.
+              All 22 components compiled with zero warnings.
             </PxAlert>
             <PxAlert tone="danger" title="One tiny problem">
               Round corners detected in a third-party stylesheet.
@@ -350,20 +376,111 @@ const players = [
             </div>
           </PxPanel>
         </div>
+
+        <!-- 07 NAVIGATION & DISCLOSURE -->
+        <div class="demo-cell demo-cell--7">
+          <PxPanel title="07 / NAVIGATION">
+            <template #actions>
+              <span class="pix-badge pix-badge--secondary">NEW IN 0.2</span>
+            </template>
+
+            <div class="demo-lab__block">
+              <span class="demo-label">BREADCRUMB</span>
+              <PxBreadcrumb :items="crumbs" />
+            </div>
+
+            <div class="demo-lab__block">
+              <span class="demo-label">SEGMENTED CONTROL</span>
+              <div class="pix-cluster">
+                <PxSegmented v-model="view" :options="views" aria-label="View mode" />
+                <PxSegmented v-model="density" :options="densities" size="sm" aria-label="Density" />
+              </div>
+            </div>
+
+            <div class="demo-lab__block">
+              <span class="demo-label">ACCORDION</span>
+              <PxAccordion v-model="openPanels" :items="panelItems" exclusive>
+                <template #panel-a11y>
+                  <p class="pix-text pix-text--sm">
+                    Built on native <code class="pix-code-inline">details</code> /
+                    <code class="pix-code-inline">summary</code>, so the disclosure is
+                    keyboard-operable and screen-reader friendly before any script runs.
+                  </p>
+                </template>
+                <template #panel-theme>
+                  <p class="pix-text pix-text--sm">
+                    Panels inherit the same tokens as every other surface — border,
+                    shadow size, and label type all follow the theme.
+                  </p>
+                </template>
+                <template #panel-ship>
+                  <p class="pix-text pix-text--sm">
+                    Exclusive mode is wired through the native
+                    <code class="pix-code-inline">name</code> attribute, with a script
+                    fallback for browsers that ignore it.
+                  </p>
+                </template>
+              </PxAccordion>
+            </div>
+
+            <div class="demo-lab__block">
+              <span class="demo-label">PAGINATION</span>
+              <PxPagination v-model="page" :pages="24" aria-label="Result pages" />
+            </div>
+          </PxPanel>
+        </div>
+
+        <!-- 08 LOADING & RANGE -->
+        <div class="demo-cell demo-cell--5">
+          <PxPanel title="08 / LOADING &amp; RANGE">
+            <template #actions>
+              <span class="pix-badge pix-badge--warning">NEW IN 0.2</span>
+            </template>
+
+            <div class="demo-lab__block">
+              <span class="demo-label">SKELETON</span>
+              <div class="demo-skeleton-card">
+                <PxSkeleton variant="circle" label="Loading profile" />
+                <div class="demo-skeleton-copy">
+                  <PxSkeleton variant="text" :lines="3" />
+                </div>
+              </div>
+            </div>
+
+            <div class="demo-lab__block">
+              <span class="demo-label">SLIDER</span>
+              <PxSlider
+                v-model="volume"
+                label="Output volume"
+                hint="Native range input, styled only."
+                show-value
+                :format="(value: number) => value + '%'"
+              />
+              <PxSlider
+                v-model="quality"
+                label="Pixel density"
+                :min="1"
+                :max="5"
+                :step="1"
+                show-value
+              />
+            </div>
+          </PxPanel>
+        </div>
       </div>
     </div>
 
     <PxModal v-model="modalOpen" title="DEPLOY BUILD" size="sm" aria-label="Deploy build">
       <div class="demo-modal">
         <p class="pix-text">
-          Ready to ship <strong>PixelSmith UI 0.1.0</strong> to production?
+          Ready to ship <strong>PixelSmith UI 0.2.0</strong> to production?
         </p>
         <PxAlert tone="warning" title="Heads up">
-          This build contains 16 components, 1 stylesheet, and absolutely no
+          This build contains 22 components, 1 stylesheet, and absolutely no
           rounded corners.
         </PxAlert>
         <div class="demo-modal__meta">
-          <span>BUILD</span><code>0.1.0</code>
+          <span>BUILD</span><code>0.2.0</code>
           <span>ASSETS</span><code>4 files</code>
           <span>TARGET</span><code>production</code>
         </div>
