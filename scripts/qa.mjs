@@ -112,6 +112,65 @@ for (const width of [320, 390, 768, 1024, 1440]) {
     JSON.stringify(numericAlign)
   )
 
+  // 0.2.0 additions: the type scale is enforced at runtime, and the new
+  // components have to behave in a real browser (native details, aria-current).
+  const scale = await page.evaluate(() => {
+    const allowed = new Set(['10px', '11px', '12px', '14px', '16px', '18px', '20px', '22px', '25px'])
+    const selector = [
+      '.pix-btn',
+      '.pix-badge',
+      '.pix-tab',
+      '.pix-field__label',
+      '.pix-table th',
+      '.pix-menu__item',
+      '.pix-pagination__item',
+      '.pix-segmented__label',
+      '.pix-accordion__trigger'
+    ].join(',')
+    const nodes = Array.from(document.querySelectorAll(selector))
+    const bad = []
+    for (const el of nodes) {
+      const size = getComputedStyle(el).fontSize
+      if (!allowed.has(size)) bad.push({ cls: el.className.toString().slice(0, 48), size })
+    }
+    return { count: nodes.length, bad: bad.slice(0, 8) }
+  })
+  check('every component label uses the type scale', scale.count > 0 && scale.bad.length === 0, JSON.stringify(scale))
+
+  const accordions = page.locator('.pix-accordion details')
+  await accordions.nth(1).locator('summary').click()
+  await page.waitForTimeout(120)
+  const accordionState = await page.evaluate(() =>
+    Array.from(document.querySelectorAll('.pix-accordion details')).map((el) => el.open)
+  )
+  check('exclusive accordion keeps one panel open', accordionState.filter(Boolean).length === 1 && accordionState[1] === true, JSON.stringify(accordionState))
+
+  await page.locator('.pix-pagination__item', { hasText: '4' }).first().click()
+  await page.waitForTimeout(100)
+  const pagination = await page.evaluate(() => {
+    const current = document.querySelector('.pix-pagination [aria-current="page"]')
+    return { text: current?.textContent?.trim() }
+  })
+  check('pagination moves aria-current', pagination.text === '4', JSON.stringify(pagination))
+
+  await page.locator('.pix-segmented__label', { hasText: 'List' }).first().click()
+  const segmented = await page.evaluate(() => {
+    const checked = document.querySelector('.pix-segmented__input:checked')
+    return { value: checked?.value }
+  })
+  check('segmented control switches', segmented.value === 'list', JSON.stringify(segmented))
+
+  const skeleton = await page.evaluate(() => {
+    const node = document.querySelector('.pix-skeleton')
+    if (!node) return { found: false }
+    return { found: true, animation: getComputedStyle(node).animationName }
+  })
+  check('skeleton renders with its sweep animation', skeleton.found && skeleton.animation === 'pix-skeleton-sweep', JSON.stringify(skeleton))
+
+  const slider = page.locator('.pix-slider').first()
+  await slider.fill('82')
+  check('slider accepts a native value', (await slider.inputValue()) === '82')
+
   check('no runtime console errors on the showcase', errors.length === 0, errors.join('; '))
   await page.close()
 }

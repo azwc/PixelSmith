@@ -17,6 +17,45 @@ types; defaults are listed in parentheses.
 
 ---
 
+## Typography & scale
+
+Two families ship with the kit: `Press Start 2P` (`--pix-font-display`) for
+labels, buttons, titles and eyebrow text, and `VT323` (`--pix-font-body`) for
+prose and controls. Both are self-hosted, so nothing is fetched at runtime.
+
+Component CSS never hardcodes a size. Every step is a token, which means a single
+override rescales a whole surface:
+
+| Token | Value | Used by |
+| --- | --- | --- |
+| <code>--pix-fs-display-2xs</code> | 10px | floors decorative type (demo, micro marks) |
+| <code>--pix-fs-display-xs</code> / <code>--pix-fs-label</code> | 11px | field labels, table heads, badges, tabs, menu headers |
+| <code>--pix-fs-display-sm</code> / <code>--pix-fs-ui</code> | 12px | buttons, panel titles, toast titles |
+| <code>--pix-fs-display-md</code> | 14px | large buttons |
+| <code>--pix-fs-display-lg</code> | 16px | avatar text, menu icons |
+| <code>--pix-fs-body-sm</code> | 18px | hints, errors, table cells, alert and toast bodies |
+| <code>--pix-fs-body-md</code> / <code>--pix-fs-body</code> | 20px | body copy, checkbox labels |
+| <code>--pix-fs-body-lg</code> / <code>--pix-fs-control</code> | 22px | inputs, textareas, selects |
+| <code>--pix-fs-body-xl</code> / <code>--pix-fs-control-lg</code> | 25px | large controls |
+
+Supporting tokens: `--pix-leading-*` (none/tight/snug/normal/relaxed/display/loose),
+`--pix-tracking-*` (tight/wide/wider/eyebrow), `--pix-icon-sm|md|lg`,
+`--pix-control-sm|md|lg` (34/42/52px) and `--pix-field-sm|md|lg` (38/46/54px).
+Headings keep their fluid clamps but are exposed as `--pix-fs-h1..h5`.
+
+~~~css
+:root {
+  --pix-font-size: 22px;      /* body base; everything that derives from it follows */
+  --pix-fs-h1: clamp(24px, 5vw, 52px);
+  --pix-fs-label: 12px;
+}
+~~~
+
+Utility classes: `.pix-text` (with `--sm` 18px, `--lg` 22px, `--tight`, `--dim`,
+`--mute`), `.pix-label` (11px display, uppercase, tracked) and `.pix-h1`…`.pix-h5`.
+
+---
+
 ## PxButton
 
 | Prop | Type | Default | Notes |
@@ -217,6 +256,74 @@ Props: <code>src</code>, <code>alt</code>, <code>initials</code>,
 
 ---
 
+## PxAccordion
+
+| Prop | Type | Default |
+| --- | --- | --- |
+| <code>items</code> | <code>{ id, label, panel?, disabled? }[]</code> | <code>[]</code> |
+| <code>modelValue</code> | <code>string[]</code> | <code>[]</code> |
+| <code>exclusive</code> | <code>boolean</code> | <code>false</code> |
+| <code>name</code> | <code>string</code> | generated |
+
+Renders native `<details>`/`<summary>`, so the disclosure is keyboard-operable
+without JavaScript. Slot `panel-<id>` overrides `item.panel`. Events:
+`update:modelValue`, `change` (both carry the open id list). Exclusive mode also
+sets the native `name` attribute and keeps a script fallback for older browsers.
+
+---
+
+## PxBreadcrumb
+
+Props: `items` (`{ label, href?, current? }[]`), `separator`
+(`chevron | slash`), `ariaLabel`. The last item gets `aria-current="page"`;
+separators are CSS pseudo-elements and stay out of the accessibility tree.
+
+---
+
+## PxPagination
+
+| Prop | Type | Default |
+| --- | --- | --- |
+| <code>modelValue</code> | <code>number</code> | <code>1</code> |
+| <code>pages</code> | <code>number</code> | <code>1</code> |
+| <code>siblings</code> | <code>number</code> | <code>1</code> |
+| <code>disabled</code> | <code>boolean</code> | <code>false</code> |
+| <code>href</code> | <code>(page: number) => string</code> | — |
+
+Emits `update:modelValue` and `change` with the new page. Renders buttons by
+default; pass `href` to render real links instead. Out-of-range values are
+clamped, `pages <= 1` renders a single control set, and the current page carries
+`aria-current="page"`. Ellipses are `aria-hidden`.
+
+---
+
+## PxSkeleton
+
+Props: `variant` (`block | text | circle`, default `block`), `size`
+(`sm | md | lg`), `width`, `height`, `lines` (text multi-line), `label`.
+Decorative by default (`aria-hidden`); pass `label` to expose `role="status"`.
+The sweep animation is stepped and stops under `prefers-reduced-motion`.
+
+---
+
+## PxSlider
+
+Props mirror `PxInput` where they apply: `modelValue`, `min`, `max`, `step`,
+`label`, `hint`, `error`, `name`, `disabled`, `required`, plus `showValue` and
+`format`. Emits `update:modelValue` (number), `input`, `change`. Wraps the native
+`input[type=range]` — keyboard, pointer and touch behaviour are the browser's.
+
+---
+
+## PxSegmented
+
+Props: `modelValue`, `options` (`{ label, value, disabled? }[]`), `name`,
+`size` (`sm | md | lg`), `ariaLabel`, `disabled`. A native radio group, so arrow
+keys and `role="radiogroup"` come for free. Emits `update:modelValue` and
+`change`.
+
+---
+
 # Toast
 
 ~~~ts
@@ -283,6 +390,12 @@ Runtime events bubble from the component root:
 | <code>.pix-avatar</code> | Pixel avatar |
 | <code>.pix-code-block</code> / <code>.pix-code-inline</code> / <code>.pix-kbd</code> | Code and keyboard UI |
 | <code>.pix-divider</code> / <code>.pix-stack</code> / <code>.pix-row</code> / <code>.pix-cluster</code> / <code>.pix-grid</code> | Lightweight layout helpers |
+| <code>.pix-accordion</code> + <code>&lt;details&gt;</code> | Disclosure panels, no JS |
+| <code>.pix-breadcrumb</code> | Breadcrumb trail with CSS separators |
+| <code>.pix-pagination</code> | Page list with current/disabled states |
+| <code>.pix-skeleton</code> | Loading placeholder (block/text/circle) |
+| <code>.pix-slider</code> | Styled native range input |
+| <code>.pix-segmented</code> | Radio-backed segmented control |
 
 All classes are namespaced with <code>pix-</code> so they can sit alongside other
 CSS systems without a global reset.

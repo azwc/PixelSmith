@@ -60,7 +60,7 @@ const copyClone = async (): Promise<void> => {
           <code>{{ copied ? 'copied!' : 'git clone azwc/PixelSmith' }}</code>
         </button>
 
-        <span class="pix-badge pix-badge--outline demo-version">v0.1.0</span>
+        <span class="pix-badge pix-badge--outline demo-version">v0.2.0</span>
 
         <button
           type="button"

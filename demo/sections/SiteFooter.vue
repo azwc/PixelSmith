@@ -25,7 +25,7 @@ import BrandMark from '../components/BrandMark.vue'
 
       <div class="demo-footer__meta">
         <span class="pix-badge pix-badge--outline">MIT LICENSE</span>
-        <span class="pix-badge pix-badge--outline">v0.1.0</span>
+        <span class="pix-badge pix-badge--outline">v0.2.0</span>
         <p>Made with 16 colors, 0 rounded corners,<br />and one very small robot.</p>
       </div>
     </div>

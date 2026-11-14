@@ -9,4 +9,4 @@ export type {
 } from './types'
 
 /** Semver of the currently loaded build. */
-export const version = '0.1.0'
+export const version = '0.2.0'

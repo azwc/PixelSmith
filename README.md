@@ -7,7 +7,7 @@
 > the demo locally. There is no registry package to install.
 
 PixelSmith UI is a from-scratch, pixel-art UI kit for **Vue 3** and **plain HTML/CSS/JS**.
-It ships 16 accessible Vue components, a standalone stylesheet, and a tiny vanilla
+It ships 22 accessible Vue components, a standalone stylesheet, and a tiny vanilla
 behavior runtime. No component framework is borrowed underneath it, no theme was
 copied, and the whole visual language was drawn from scratch.
 
@@ -19,7 +19,7 @@ Most "retro" UI kits stop at a blocky button and a Google Font. PixelSmith UI is
 meant to be used: forms, tabs, dialogs, menus, toasts, tables, progress, focus
 management, keyboard support, and light/dark themes all ship in the box.
 
-- **16 Vue 3 components** with typed props, slots, and native events.
+- **22 Vue 3 components** with typed props, slots, and native events.
 - **Standalone CSS + JS bundle.** One stylesheet, one script tag, built locally
   from this source tree.
 - **Zero runtime dependencies.** The vanilla runtime has no dependencies; Vue is
@@ -166,9 +166,10 @@ PixelUI.toast('Saved!')
 | --- | --- | --- |
 | Actions | <code>PxButton</code> | <code>.pix-btn</code> |
 | Layout | <code>PxPanel</code>, <code>PxBadge</code> | <code>.pix-panel</code>, <code>.pix-badge</code> |
-| Forms | <code>PxInput</code>, <code>PxTextarea</code>, <code>PxSelect</code>, <code>PxCheckbox</code>, <code>PxRadio</code>, <code>PxSwitch</code> | <code>.pix-input</code>, <code>.pix-textarea</code>, <code>.pix-select</code>, <code>.pix-check</code>, <code>.pix-radio</code>, <code>.pix-switch</code> |
-| Navigation | <code>PxTabs</code>, <code>PxDropdown</code> | <code>data-pix="tabs"</code>, <code>data-pix="dropdown"</code> |
-| Feedback | <code>PxProgress</code>, <code>PxAlert</code>, <code>PxSpinner</code>, <code>PxModal</code>, toast API | <code>.pix-progress</code>, <code>.pix-alert</code>, <code>.pix-spinner</code>, <code>.pix-modal</code> |
+| Forms | <code>PxInput</code>, <code>PxTextarea</code>, <code>PxSelect</code>, <code>PxCheckbox</code>, <code>PxRadio</code>, <code>PxSwitch</code>, <code>PxSlider</code>, <code>PxSegmented</code> | <code>.pix-input</code>, <code>.pix-textarea</code>, <code>.pix-select</code>, <code>.pix-check</code>, <code>.pix-radio</code>, <code>.pix-switch</code>, <code>.pix-slider</code>, <code>.pix-segmented</code> |
+| Navigation | <code>PxTabs</code>, <code>PxDropdown</code>, <code>PxBreadcrumb</code>, <code>PxPagination</code> | <code>data-pix="tabs"</code>, <code>data-pix="dropdown"</code>, <code>.pix-breadcrumb</code>, <code>.pix-pagination</code> |
+| Disclosure | <code>PxAccordion</code> | <code>.pix-accordion</code> (native <code>details</code>) |
+| Feedback | <code>PxProgress</code>, <code>PxAlert</code>, <code>PxSpinner</code>, <code>PxSkeleton</code>, <code>PxModal</code>, toast API | <code>.pix-progress</code>, <code>.pix-alert</code>, <code>.pix-spinner</code>, <code>.pix-skeleton</code>, <code>.pix-modal</code> |
 | Data & identity | <code>PxAvatar</code> | <code>.pix-table</code>, <code>.pix-avatar</code>, <code>.pix-tag</code> |
 
 <p align="center">
@@ -189,6 +190,19 @@ overridden without a build step:
   --pix-shadow-size: 7px;
   --pix-font-display: 'Press Start 2P', monospace;
   --pix-font-body: 'VT323', monospace;
+}
+~~~
+
+Type is token-driven too. <code>--pix-font-size</code> is the body base; the
+scale around it lives in <code>--pix-fs-*</code>:
+
+~~~css
+:root {
+  --pix-fs-display-xs: 11px;  /* Press Start 2P labels */
+  --pix-fs-ui: 12px;          /* buttons, panel titles */
+  --pix-fs-body-sm: 18px;     /* hints, table cells */
+  --pix-fs-body: var(--pix-font-size);
+  --pix-fs-control: 22px;     /* form controls */
 }
 ~~~
 
@@ -282,7 +296,7 @@ pixelsmith-ui/
 ├─ src/
 │  ├─ styles/              tokens, base, component CSS
 │  ├─ runtime/             vanilla tabs, modal, dropdown, toast, manager
-│  ├─ vue/                 16 Vue SFCs, plugin, useToast
+│  ├─ vue/                 22 Vue SFCs, plugin, useToast
 │  ├─ index.ts             vanilla ESM entry
 │  └─ standalone.ts        auto-mount IIFE entry
 ├─ demo/                   Vue showcase application
