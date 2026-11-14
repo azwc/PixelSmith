@@ -10,7 +10,6 @@
 
   --pix-bg: #0b0b12;
   --pix-bg-alt: #11111d;
-  --pix-bg-raise: #171726;
   --pix-surface: #151522;
   --pix-surface-2: #1e1e30;
   --pix-surface-3: #2a2a42;
@@ -63,7 +62,6 @@
 
   --pix-bg: #f7f2e3;
   --pix-bg-alt: #efe7d4;
-  --pix-bg-raise: #fffaf0;
   --pix-surface: #fffaf0;
   --pix-surface-2: #f2ead8;
   --pix-surface-3: #e4d9c2;
@@ -94,3 +92,72 @@
   --pix-scanline: rgb(27 22 38 / 0.04);
   --pix-grid-line: rgb(27 22 38 / 0.07);
 }
+/* =========================================================
+   Typography, leading and control sizes.
+   Deliberately outside the theme blocks: switching light/dark
+   must never rescale text or controls.
+   ========================================================= */
+
+:root {
+  /* Display face (Press Start 2P) — very wide, so steps stay small. */
+  --pix-fs-display-2xs: 10px;
+  --pix-fs-display-xs: 11px;
+  --pix-fs-display-sm: 12px;
+  --pix-fs-display-md: 14px;
+  --pix-fs-display-lg: 16px;
+  --pix-fs-display-xl: 18px;
+
+  /* Body face (VT323) — optically small, so steps stay large. */
+  --pix-fs-body-sm: 18px;
+  --pix-fs-body-md: 20px;
+  --pix-fs-body-lg: 22px;
+  --pix-fs-body-xl: 25px;
+
+  /* Semantic aliases: prefer these in component CSS. */
+  --pix-fs-label: var(--pix-fs-display-xs);
+  --pix-fs-ui: var(--pix-fs-display-sm);
+  --pix-fs-body: var(--pix-font-size);
+  --pix-fs-control: var(--pix-fs-body-lg);
+  --pix-fs-control-sm: var(--pix-fs-body-md);
+  --pix-fs-control-lg: var(--pix-fs-body-xl);
+
+  /* Headings keep their fluid clamps, now overridable per token. */
+  --pix-fs-h1: clamp(22px, 4.4vw, 46px);
+  --pix-fs-h2: clamp(16px, 2.6vw, 26px);
+  --pix-fs-h3: clamp(12px, 1.8vw, 17px);
+  --pix-fs-h4: 12px;
+  --pix-fs-h5: var(--pix-fs-display-xs);
+
+  --pix-leading-none: 1;
+  --pix-leading-tight: 1.1;
+  --pix-leading-snug: 1.2;
+  --pix-leading-normal: 1.3;
+  --pix-leading-relaxed: 1.5;
+  --pix-leading-display: 1.55;
+  --pix-leading-loose: 1.6;
+
+  --pix-tracking-tight: 0.02em;
+  --pix-tracking-wide: 0.03em;
+  --pix-tracking-wider: 0.04em;
+  --pix-tracking-eyebrow: 0.16em;
+
+  --pix-icon-sm: 14px;
+  --pix-icon-md: 16px;
+  --pix-icon-lg: 20px;
+
+  --pix-control-sm: 34px;
+  --pix-control-md: 42px;
+  --pix-control-lg: 52px;
+  --pix-field-sm: 38px;
+  --pix-field-md: 46px;
+  --pix-field-lg: 54px;
+
+  /* Spacing ramp — declared now, applied across components in v0.3. */
+  --pix-space-1: 4px;
+  --pix-space-2: 8px;
+  --pix-space-3: 12px;
+  --pix-space-4: 16px;
+  --pix-space-5: 22px;
+  --pix-space-6: 28px;
+}
+

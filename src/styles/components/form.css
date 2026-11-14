@@ -9,9 +9,9 @@
   align-items: baseline;
   gap: 7px;
   font-family: var(--pix-font-display);
-  font-size: 8px;
-  line-height: 1.5;
-  letter-spacing: 0.02em;
+  font-size: var(--pix-fs-label);
+  line-height: var(--pix-leading-relaxed);
+  letter-spacing: var(--pix-tracking-tight);
   text-transform: uppercase;
   color: var(--pix-ink-dim);
 }
@@ -23,16 +23,16 @@
 .pix-field__hint {
   margin: 0;
   font-family: var(--pix-font-body);
-  font-size: 17px;
-  line-height: 1.2;
+  font-size: var(--pix-fs-body-sm);
+  line-height: var(--pix-leading-snug);
   color: var(--pix-ink-mute);
 }
 
 .pix-field__error {
   margin: 0;
   font-family: var(--pix-font-body);
-  font-size: 17px;
-  line-height: 1.2;
+  font-size: var(--pix-fs-body-sm);
+  line-height: var(--pix-leading-snug);
   color: var(--pix-danger);
 }
 
@@ -47,15 +47,15 @@
   color: var(--pix-ink);
   box-shadow: inset 3px 3px 0 rgb(0 0 0 / 0.22);
   font-family: var(--pix-font-body);
-  font-size: 22px;
-  line-height: 1.15;
+  font-size: var(--pix-fs-control);
+  line-height: var(--pix-leading-tight);
   transition:
     border-color 80ms steps(2),
     box-shadow 80ms steps(2);
 }
 
 .pix-input {
-  min-height: 46px;
+  min-height: var(--pix-field-md);
   padding: 8px 12px;
 }
 
@@ -66,7 +66,7 @@
 }
 
 .pix-select {
-  min-height: 46px;
+  min-height: var(--pix-field-md);
   padding: 8px 42px 8px 12px;
   appearance: none;
   cursor: pointer;
@@ -113,14 +113,14 @@
 
 .pix-input--sm,
 .pix-select--sm {
-  min-height: 38px;
-  font-size: 19px;
+  min-height: var(--pix-field-sm);
+  font-size: var(--pix-fs-body-sm);
 }
 
 .pix-input--lg,
 .pix-select--lg {
-  min-height: 54px;
-  font-size: 25px;
+  min-height: var(--pix-field-lg);
+  font-size: var(--pix-fs-control-lg);
 }
 
 .pix-select-wrap {
@@ -176,13 +176,13 @@
   align-items: center;
   justify-content: center;
   flex: none;
-  min-width: 42px;
+  min-width: var(--pix-control-md);
   padding: 0 10px;
   border-inline: 3px solid var(--pix-line-soft);
   background: var(--pix-surface-2);
   color: var(--pix-ink-dim);
   font-family: var(--pix-font-display);
-  font-size: 8px;
+  font-size: var(--pix-fs-label);
   text-transform: uppercase;
 }
 
@@ -289,8 +289,8 @@
   gap: 2px;
   padding-top: 3px;
   font-family: var(--pix-font-body);
-  font-size: 20px;
-  line-height: 1.1;
+  font-size: var(--pix-fs-body);
+  line-height: var(--pix-leading-tight);
 }
 
 .pix-check__label,
@@ -303,7 +303,7 @@
 .pix-radio__hint,
 .pix-switch__hint {
   color: var(--pix-ink-mute);
-  font-size: 17px;
+  font-size: var(--pix-fs-body-sm);
 }
 
 .pix-radio__box {
@@ -393,6 +393,6 @@
 .pix-fieldset__legend {
   padding: 0 6px;
   font-family: var(--pix-font-display);
-  font-size: 8px;
+  font-size: var(--pix-fs-label);
   text-transform: uppercase;
 }

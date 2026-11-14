@@ -14,9 +14,9 @@
   color: var(--pix-badge-fg);
   box-shadow: 2px 2px 0 var(--pix-shadow);
   font-family: var(--pix-font-display);
-  font-size: 7px;
-  line-height: 1.5;
-  letter-spacing: 0.03em;
+  font-size: var(--pix-fs-label);
+  line-height: var(--pix-leading-relaxed);
+  letter-spacing: var(--pix-tracking-wide);
   text-transform: uppercase;
   white-space: nowrap;
 }
@@ -39,7 +39,7 @@
 .pix-badge--lg {
   min-height: 26px;
   padding: 5px 9px 3px;
-  font-size: 8px;
+  font-size: var(--pix-fs-ui);
 }
 
 .pix-badge__dot {
@@ -67,6 +67,6 @@
   background: transparent;
   color: var(--pix-ink-dim);
   font-family: var(--pix-font-body);
-  font-size: 17px;
-  line-height: 1;
+  font-size: var(--pix-fs-body-sm);
+  line-height: var(--pix-leading-none);
 }

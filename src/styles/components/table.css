@@ -11,15 +11,15 @@
   border-collapse: collapse;
   color: var(--pix-ink);
   font-family: var(--pix-font-body);
-  font-size: 19px;
-  line-height: 1.2;
+  font-size: var(--pix-fs-body-sm);
+  line-height: var(--pix-leading-snug);
 }
 
 .pix-table caption {
   padding: 10px 12px;
   color: var(--pix-ink-dim);
   font-family: var(--pix-font-display);
-  font-size: 8px;
+  font-size: var(--pix-fs-label);
   text-align: left;
   text-transform: uppercase;
 }
@@ -30,9 +30,9 @@
   background: var(--pix-line);
   color: var(--pix-bg);
   font-family: var(--pix-font-display);
-  font-size: 7px;
+  font-size: var(--pix-fs-label);
   font-weight: 400;
-  line-height: 1.5;
+  line-height: var(--pix-leading-relaxed);
   text-align: left;
   text-transform: uppercase;
   white-space: nowrap;

@@ -16,8 +16,8 @@
   color: var(--pix-bg);
   box-shadow: 3px 3px 0 var(--pix-shadow);
   font-family: var(--pix-font-display);
-  font-size: 7px;
-  line-height: 1.6;
+  font-size: var(--pix-fs-label);
+  line-height: var(--pix-leading-loose);
   text-align: center;
   text-transform: uppercase;
   white-space: normal;

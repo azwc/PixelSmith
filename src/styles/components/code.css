@@ -7,7 +7,7 @@
   color: var(--pix-secondary);
   font-family: var(--pix-font-code);
   font-size: 0.9em;
-  line-height: 1.35;
+  line-height: var(--pix-leading-normal);
   vertical-align: baseline;
 }
 
@@ -17,7 +17,7 @@
   background: var(--pix-surface-2);
   color: var(--pix-ink);
   font-family: var(--pix-font-display);
-  font-size: 7px;
+  font-size: var(--pix-fs-label);
   text-transform: uppercase;
 }
 
@@ -30,8 +30,8 @@
   color: var(--pix-ink-dim);
   box-shadow: 4px 4px 0 var(--pix-shadow);
   font-family: var(--pix-font-code);
-  font-size: 18px;
-  line-height: 1.25;
+  font-size: var(--pix-fs-body-sm);
+  line-height: var(--pix-leading-normal);
   tab-size: 2;
 }
 
@@ -52,7 +52,7 @@
   background: var(--pix-surface-2);
   color: var(--pix-ink-mute);
   font-family: var(--pix-font-display);
-  font-size: 7px;
+  font-size: var(--pix-fs-label);
   text-transform: uppercase;
 }
 

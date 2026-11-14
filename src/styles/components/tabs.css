@@ -17,7 +17,7 @@
   align-items: center;
   justify-content: center;
   gap: 8px;
-  min-height: 38px;
+  min-height: var(--pix-field-sm);
   padding: 9px 13px;
   border: var(--pix-border) solid var(--pix-line-soft);
   border-radius: 0;
@@ -25,9 +25,9 @@
   color: var(--pix-ink-dim);
   box-shadow: 3px 3px 0 var(--pix-shadow);
   font-family: var(--pix-font-display);
-  font-size: 8px;
-  line-height: 1.5;
-  letter-spacing: 0.02em;
+  font-size: var(--pix-fs-label);
+  line-height: var(--pix-leading-relaxed);
+  letter-spacing: var(--pix-tracking-tight);
   text-transform: uppercase;
   cursor: pointer;
   transition:
@@ -67,7 +67,7 @@
   height: 1em;
   align-items: center;
   justify-content: center;
-  font-size: 13px;
+  font-size: var(--pix-fs-ui);
 }
 
 .pix-tab-panel {

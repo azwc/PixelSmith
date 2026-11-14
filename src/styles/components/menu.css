@@ -25,10 +25,10 @@
   padding: 6px 9px 4px;
   color: var(--pix-ink-mute);
   font-family: var(--pix-font-display);
-  font-size: 7px;
-  line-height: 1.5;
+  font-size: var(--pix-fs-label);
+  line-height: var(--pix-leading-relaxed);
   text-transform: uppercase;
-  letter-spacing: 0.04em;
+  letter-spacing: var(--pix-tracking-wider);
 }
 
 .pix-menu__item {
@@ -42,8 +42,8 @@
   background: transparent;
   color: var(--pix-ink);
   font-family: var(--pix-font-body);
-  font-size: 20px;
-  line-height: 1.15;
+  font-size: var(--pix-fs-body);
+  line-height: var(--pix-leading-tight);
   text-align: left;
   text-decoration: none;
   cursor: pointer;
@@ -71,7 +71,7 @@
   flex: none;
   width: 18px;
   height: 18px;
-  font-size: 15px;
+  font-size: var(--pix-fs-display-lg);
 }
 
 .pix-menu__item-text {
@@ -84,8 +84,8 @@
   padding: 2px 5px;
   border: 2px solid currentColor;
   font-family: var(--pix-font-display);
-  font-size: 6px;
-  line-height: 1.5;
+  font-size: var(--pix-fs-label);
+  line-height: var(--pix-leading-relaxed);
   opacity: 0.7;
 }
 

@@ -29,8 +29,8 @@
   color: var(--pix-bg);
   box-shadow: 2px 2px 0 var(--pix-shadow);
   font-family: var(--pix-font-display);
-  font-size: 10px;
-  line-height: 1;
+  font-size: var(--pix-fs-ui);
+  line-height: var(--pix-leading-none);
 }
 
 .pix-alert__body {
@@ -41,8 +41,8 @@
 .pix-alert__title {
   margin: 0 0 3px;
   font-family: var(--pix-font-display);
-  font-size: 8px;
-  line-height: 1.6;
+  font-size: var(--pix-fs-label);
+  line-height: var(--pix-leading-loose);
   text-transform: uppercase;
 }
 
@@ -50,8 +50,8 @@
   margin: 0;
   color: var(--pix-ink-dim);
   font-family: var(--pix-font-body);
-  font-size: 19px;
-  line-height: 1.18;
+  font-size: var(--pix-fs-body-sm);
+  line-height: var(--pix-leading-snug);
 }
 
 .pix-alert__close {
@@ -63,8 +63,8 @@
   background: transparent;
   color: var(--pix-ink-dim);
   font-family: var(--pix-font-display);
-  font-size: 9px;
-  line-height: 1;
+  font-size: var(--pix-fs-ui);
+  line-height: var(--pix-leading-none);
   cursor: pointer;
 }
 

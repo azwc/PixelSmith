@@ -16,15 +16,15 @@
   display: flex;
   align-items: center;
   gap: 10px;
-  min-height: 38px;
+  min-height: var(--pix-field-sm);
   padding: 8px 12px;
   border-bottom: var(--pix-border) solid var(--pix-line);
   background: var(--pix-panel-titlebar-bg);
   color: var(--pix-panel-titlebar-fg);
   font-family: var(--pix-font-display);
-  font-size: 9px;
-  line-height: 1.5;
-  letter-spacing: 0.04em;
+  font-size: var(--pix-fs-ui);
+  line-height: var(--pix-leading-relaxed);
+  letter-spacing: var(--pix-tracking-wider);
   text-transform: uppercase;
 }
 
@@ -64,7 +64,7 @@
   gap: 8px;
   margin-left: auto;
   font-family: var(--pix-font-body);
-  font-size: 17px;
+  font-size: var(--pix-fs-body-sm);
   text-transform: none;
   letter-spacing: 0;
 }

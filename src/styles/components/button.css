@@ -9,7 +9,7 @@
   align-items: center;
   justify-content: center;
   gap: 10px;
-  min-height: 42px;
+  min-height: var(--pix-control-md);
   padding: 11px 16px;
   border: var(--pix-border) solid var(--pix-btn-edge);
   border-radius: var(--pix-radius);
@@ -19,10 +19,10 @@
     inset -3px -3px 0 rgb(0 0 0 / 0.2),
     var(--pix-shadow-size) var(--pix-shadow-size) 0 var(--pix-btn-shadow);
   font-family: var(--pix-font-display);
-  font-size: 9px;
+  font-size: var(--pix-fs-ui);
   font-weight: 400;
-  line-height: 1.45;
-  letter-spacing: 0.03em;
+  line-height: var(--pix-leading-relaxed);
+  letter-spacing: var(--pix-tracking-wide);
   text-transform: uppercase;
   text-decoration: none;
   white-space: nowrap;
@@ -108,16 +108,16 @@
 }
 
 .pix-btn--sm {
-  min-height: 34px;
+  min-height: var(--pix-control-sm);
   padding: 8px 12px;
-  font-size: 7px;
+  font-size: var(--pix-fs-label);
   gap: 8px;
 }
 
 .pix-btn--lg {
-  min-height: 52px;
+  min-height: var(--pix-control-lg);
   padding: 15px 22px;
-  font-size: 11px;
+  font-size: var(--pix-fs-display-md);
 }
 
 .pix-btn--block {
@@ -126,10 +126,10 @@
 }
 
 .pix-btn--icon {
-  width: 42px;
-  min-width: 42px;
-  height: 42px;
-  min-height: 42px;
+  width: var(--pix-control-md);
+  min-width: var(--pix-control-md);
+  height: var(--pix-control-md);
+  min-height: var(--pix-control-md);
   padding: 0;
 }
 
@@ -137,14 +137,14 @@
   width: 34px;
   min-width: 34px;
   height: 34px;
-  min-height: 34px;
+  min-height: var(--pix-control-sm);
 }
 
 .pix-btn--icon.pix-btn--lg {
   width: 52px;
   min-width: 52px;
   height: 52px;
-  min-height: 52px;
+  min-height: var(--pix-control-lg);
 }
 
 .pix-btn[aria-busy='true'] {
@@ -163,8 +163,8 @@
   width: 1em;
   height: 1em;
   flex: none;
-  font-size: 14px;
-  line-height: 1;
+  font-size: var(--pix-icon-sm);
+  line-height: var(--pix-leading-none);
 }
 
 .pix-btn__icon svg {

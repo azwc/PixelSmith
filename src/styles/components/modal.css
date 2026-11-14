@@ -69,8 +69,8 @@
   background: transparent;
   color: inherit;
   font-family: var(--pix-font-display);
-  font-size: 13px;
-  line-height: 1;
+  font-size: var(--pix-fs-ui);
+  line-height: var(--pix-leading-none);
   cursor: pointer;
 }
 
