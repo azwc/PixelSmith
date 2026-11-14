@@ -1,7 +1,7 @@
 {
   "name": "pixelsmith-ui",
   "version": "0.1.0",
-  "description": "A handcrafted pixel-art UI kit for Vue 3 and vanilla JS/CSS.",
+  "description": "A from-scratch pixel-art UI kit for Vue 3 and vanilla JS/CSS. Generated with DeepSeek Harness.",
   "type": "module",
   "license": "MIT",
   "author": "azwc <228516415@qq.com>",

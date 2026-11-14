@@ -2,7 +2,7 @@
 
 **Chunky pixels. Serious interfaces.**
 
-PixelSmith UI is a hand-built, pixel-art UI kit for **Vue 3** and **plain HTML/CSS/JS**.
+PixelSmith UI is a from-scratch, pixel-art UI kit for **Vue 3** and **plain HTML/CSS/JS**.
 It ships 16 accessible Vue components, a standalone stylesheet, and a tiny vanilla
 behavior runtime. No component framework is borrowed underneath it, no theme was
 copied, and the whole visual language was drawn from scratch.
@@ -273,6 +273,19 @@ standard DOM APIs and a small amount of <code>:has()</code> for the disabled
 checkbox/switch polish. Core behavior does not depend on <code>:has()</code>.
 Closed modals use <code>inert</code> plus <code>aria-hidden</code>; CSS
 <code>visibility</code> prevents accidental focus in older engines.
+
+## Project provenance
+
+PixelSmith UI was generated with **DeepSeek Harness** from an empty project
+directory. The component library, Vue demo, vanilla example, tests, screenshots,
+build configuration, and documentation were produced in a DeepSeek Harness agent
+session, with product direction and release review from
+[azwc](https://github.com/azwc). It is not a fork, reskin, or rebrand of another
+UI kit.
+
+The project is maintained as normal source code: every commit is reviewable,
+every component has a documented API, and the browser checks live in
+[scripts/qa.mjs](scripts/qa.mjs).
 
 ## License
 
