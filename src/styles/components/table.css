@@ -68,6 +68,13 @@
   text-align: right;
 }
 
+/* Header cells set their own left alignment, so the single-class rule above
+ * loses the cascade on th. Restate the intent at matching specificity so
+ * numeric column headers sit directly over their numeric cells. */
+.pix-table th.pix-table__num {
+  text-align: right;
+}
+
 .pix-table__actions {
   display: flex;
   justify-content: flex-end;

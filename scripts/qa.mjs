@@ -88,6 +88,30 @@ for (const width of [320, 390, 768, 1024, 1440]) {
   await page.getByRole('button', { name: 'Switch to light theme' }).click()
   await page.waitForTimeout(100)
   check('theme toggle switches to light', (await page.evaluate(() => document.documentElement.dataset.pixTheme)) === 'light')
+
+  // Numeric header cells must line up with the numeric cells below them, even
+  // though th carries its own text-align: left rule.
+  const numericAlign = await page.evaluate(() => {
+    const table = Array.from(document.querySelectorAll('.pix-table')).find(
+      (candidate) => candidate.querySelector('th.pix-table__num')
+    )
+    if (!table) return { found: false, columns: [] }
+    const headers = Array.from(table.querySelectorAll('th.pix-table__num'))
+    const cells = Array.from(table.querySelectorAll('tbody tr:first-child td.pix-table__num'))
+    return {
+      found: true,
+      columns: headers.map((header, index) => ({
+        header: header.textContent.trim(),
+        delta: Math.round(header.getBoundingClientRect().right - (cells[index]?.getBoundingClientRect().right ?? 0))
+      }))
+    }
+  })
+  check(
+    'numeric table headers align with their cells',
+    numericAlign.found && numericAlign.columns.length > 0 && numericAlign.columns.every((column) => Math.abs(column.delta) <= 1),
+    JSON.stringify(numericAlign)
+  )
+
   check('no runtime console errors on the showcase', errors.length === 0, errors.join('; '))
   await page.close()
 }
